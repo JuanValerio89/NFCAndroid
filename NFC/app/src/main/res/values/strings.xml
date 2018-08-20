@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Security hologram</string>
+    <string-array name="folios">
+        <item>folio 000001</item>
+        <item>folio 000002</item>
+        <item>folio 000003</item>
+        <item>folio 000004</item>
+        <item>folio 000005</item>
+    </string-array>
+    <string-array name="validos">
+        <item>80 4e c9 aa 94 75 04</item>
+        <item>80 4e c9 aa 94 fc 04</item>
+        <item>81 4e c9 aa 91 7a 04</item>
+        <item>80 4e c9 aa 94 62 04</item>
+        <item>81 4e c9 aa 92 12 04</item>
+        <item>80 5a 5d 8a 61 99 04</item>
+    </string-array>
+    <string name="version">Version 1.1</string>
+</resources>
