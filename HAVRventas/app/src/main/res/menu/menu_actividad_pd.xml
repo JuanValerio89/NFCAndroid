@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.ventas.havr.havrventas.ActividadPDF">
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title="actividad"
+        app:showAsAction="never" />
+</menu>

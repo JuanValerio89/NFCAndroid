@@ -1,0 +1,172 @@
+<resources>
+    <string name="app_name">HAVR Electrónica</string>
+
+    <string-array name="conjunto_componentes">
+        <item>Arduino</item>
+        <item>Baterías</item>
+        <item>Brocas</item>
+        <item>Bluetooth</item>
+        <item>Cables</item>
+        <item>Capacitores</item>
+        <item>Cautin</item>
+        <item>Circuitos Integrados</item>
+        <item>Dupont</item>
+        <item>Disipadores</item>
+        <item>Dip Switch</item>
+        <item>Displays</item>
+        <item>Headers</item>
+        <item>Productos HV</item>
+        <item>Laser</item>
+        <item>Leds</item>
+        <item>Medidores</item>
+        <item>Modulos</item>
+        <item>Motores</item>
+        <item>Placas</item>
+        <item>Potenciometros</item>
+        <item>Programadores</item>
+        <item>Pinzas</item>
+        <item>Radiofrecuencia</item>
+        <item>Resistencias</item>
+        <item>Relevadores</item>
+        <item>Celdas Solares</item>
+        <item>Sistemas Minimos</item>
+        <item>Sensores</item>
+        <item>Servomotores</item>
+        <item>Switch</item>
+        <item>Terminal Block</item>
+        <item>Transformadores</item>
+        <item>Potenciometros Lineales</item>
+        <item>Trimpots</item>
+        <item>Wire Wrap</item>
+        <item>Bases Zif</item>
+    </string-array>
+
+    <string-array name="base_arduino">
+        <item>ar0041@http://www.h-avr.mx/product-page/kit-para-arduino-uno</item>
+        <item>ar0040@http://www.h-avr.mx/product-page/placa-de-desarrollo-tiny85</item>
+        <item>ar0039@http://www.h-avr.mx/product-page/arduino-sensor-shield-v4-0</item>
+        <item>ar0038@http://www.h-avr.mx/product-page/micro-usb-tiny-avr-isp-programador-5v</item>
+        <item>ar0037@http://www.h-avr.mx/product-page/tarjeta-lilypad-buzzer</item>
+        <item>ar0036@http://www.h-avr.mx/product-page/shield-l298p-para-arduino-uno</item>
+        <item>ar0035@http://www.h-avr.mx/product-page/lilypad-shield-ws2818-lylipad-pixel</item>
+        <item>ar0034@http://www.h-avr.mx/product-page/shield-cnc-para-arduino-nano</item>
+        <item>ar0033@http://www.h-avr.mx/product-page/lilypad-shield-ws2818-lylipad-pixel</item>
+        <item>ar0032@http://www.h-avr.mx/product-page/shield-sensor-para-arduino-mega</item>
+        <item>ar0031@http://www.h-avr.mx/product-page/shield-para-arduino-nano</item>
+        <item>ar0030@http://www.h-avr.mx/product-page/arduino-nano-con-header-sin-soldar</item>
+        <item>ar0029@http://www.h-avr.mx/product-page/lilypad-rgb-pad</item>
+        <item>ar0028@http://www.h-avr.mx/product-page/lilypad-attiny85</item>
+        <item>ar0027@http://www.h-avr.mx/product-page/lilypad-lithium-battery-boost</item>
+        <item>ar0026@http://www.h-avr.mx/product-page/lilypad-cr2032-battery</item>
+        <item>ar0025@http://www.h-avr.mx/product-page/lilypad-power-supply-aaa</item>
+        <item>ar0024@http://www.h-avr.mx/product-page/shiel-protoboard-para-arduino-mega</item>
+        <item>ar0023@http://www.h-avr.mx/product-page/caja-para-arduino-mega</item>
+        <item>ar0022@http://www.h-avr.mx/product-page/sensor-shield-arduino-v5-0</item>
+        <item>ar0021@http://www.h-avr.mx/product-page/protoshield-para-arduino</item>
+        <item>ar0020@http://www.h-avr.mx/product-page/modulo-yun</item>
+        <item>ar0019@http://www.h-avr.mx/product-page/arduino-uno-economico</item>
+        <item>ar0018@http://www.h-avr.mx/product-page/caja-para-arduino</item>
+        <item>ar0017@http://www.h-avr.mx/product-page/placa-arduino-uno</item>
+        <item>ar0016@http://www.h-avr.mx/product-page/arduino-uno-rv3</item>
+        <item>ar0015@http://www.h-avr.mx/product-page/arduino-shield-usb</item>
+        <item>ar0014@http://www.h-avr.mx/product-page/arduino-shield-lcd</item>
+        <item>ar0013@http://www.h-avr.mx/product-page/arduino-shield-gsm-sim900</item>
+        <item>ar0012@http://www.h-avr.mx/product-page/arduino-shield-gps</item>
+        <item>ar0011@http://www.h-avr.mx/product-page/arduino-shield-ethernet</item>
+        <item>ar0010@http://www.h-avr.mx/product-page/arduino-pro-mini</item>
+        <item>ar0009@http://www.h-avr.mx/product-page/arduino-nano</item>
+        <item>ar0008@http://www.h-avr.mx/product-page/arduino-mega</item>
+        <item>ar0007@http://www.h-avr.mx/product-page/arduino-lilypad-usb</item>
+        <item>ar0005@http://www.h-avr.mx/product-page/arduino-lilypad-no-usb</item>
+        <item>ar0004@http://www.h-avr.mx/product-page/arduino-leonardo</item>
+        <item>ar0003@http://www.h-avr.mx/product-page/arduino-shield-expansi%C3%B3n-tarjeta-aprendizaje</item>
+        <item>ar0002@http://www.h-avr.mx/product-page/arduino-due</item>
+    </string-array>
+
+    <string-array name="base_brocas">
+        <item>br0014@http://www.h-avr.mx/product-page/juego-de-brocas-de-0-3-a-1-2-mm</item>
+        <item>br0012@http://www.h-avr.mx/product-page/juego-de-brocas-0-4-mm</item>
+        <item>br0011@http://www.h-avr.mx/product-page/juego-de-brocas-1-5-mm</item>
+        <item>br0010@http://www.h-avr.mx/product-page/juego-de-brocas-1-3-mm</item>
+        <item>br0009@http://www.h-avr.mx/product-page/juego-de-brocas-1-1-mm</item>
+        <item>br0008@http://www.h-avr.mx/product-page/juego-de-brocas-0-7-mm</item>
+        <item>br0007@http://www.h-avr.mx/product-page/juego-de-brocas-0-5-mm</item>
+        <item>br0006@http://www.h-avr.mx/product-page/juego-de-brocas-1-4-mm</item>
+        <item>br0005@http://www.h-avr.mx/product-page/juego-de-brocas-0-6-mm</item>
+        <item>br0004@http://www.h-avr.mx/product-page/juego-de-brocas-0-9-mm</item>
+        <item>br0003@http://www.h-avr.mx/product-page/juego-de-brocas-0-8-mm</item>
+        <item>br0002@http://www.h-avr.mx/product-page/juego-de-brocas-1-2-mm</item>
+        <item>br0001@http://www.h-avr.mx/product-page/juego-de-brocas-1-0-mm</item>
+    </string-array>
+
+    <string-array name="base_bluetooth">
+        <item>bt0010@http://www.h-avr.mx/product-page/modulo-inalambrico-hc12-433-mhz</item>
+        <item>bt0009@http://www.h-avr.mx/product-page/bluetooth-xbee-hc05</item>
+        <item>bt0008@http://www.h-avr.mx/product-page/at09-bluetooth-4-0</item>
+        <item>bt0007@http://www.h-avr.mx/product-page/bluetooth-obdll-blanco</item>
+        <item>bt0006@http://www.h-avr.mx/product-page/bluetooth-para-pc-usb</item>
+        <item>bt0005@http://www.h-avr.mx/product-page/bluetooth-obdll-azul</item>
+        <item>bt0003@http://www.h-avr.mx/product-page/bluetooth-para-microcontrolador-hm10</item>
+        <item>bt0002@http://www.h-avr.mx/product-page/hc06-bluetooth-para-microcontrolador</item>
+        <item>bt0001@http://www.h-avr.mx/product-page/hc05-bluetooth-para-microcontrolador</item>
+    </string-array>
+
+    <string-array name="base_displays">
+        <item>ds0024@http://www.h-avr.mx/product-page/pantalla-oled-blanca-de-1-3-128x64</item>
+        <item>ds0023@http://www.h-avr.mx/product-page/pantalla-oled-azul-de-1-3-128x64</item>
+        <item>ds0021@http://www.h-avr.mx/product-page/pantalla-oled-blanca-de-0-96-128x64</item>
+        <item>ds0020@http://www.h-avr.mx/product-page/pantalla-oled-azul-de-0-96-128x64</item>
+        <item>ds0019@http://www.h-avr.mx/product-page/display-7-segmentos-4-digitos-color-rojo-0-56-catodo</item>
+        <item>ds0018@http://www.h-avr.mx/product-page/display-7-segmentos-3-digitos-color-rojo-0-36-catodo-1</item>
+        <item>ds0017@http://www.h-avr.mx/product-page/display-7-segmentos-3-digitos-color-rojo-0-36-catodo</item>
+        <item>ds0016@http://www.h-avr.mx/product-page/display-7-segmentos-4-digitos</item>
+        <item>ds0015@http://www.h-avr.mx/product-page/pantalla-176-220-spi-2</item>
+        <item>ds0013@http://www.h-avr.mx/product-page/lcd-16x2-sin-luz-recuperada</item>
+        <item>ds0012@http://www.h-avr.mx/product-page/lcd-16x1-recuperada</item>
+        <item>ds0011@http://www.h-avr.mx/product-page/lcd-20x4-verde</item>
+        <item>ds0010@http://www.h-avr.mx/product-page/display-catodo-comun-rojo-7-segmentos-10-piezas</item>
+        <item>ds0009@http://www.h-avr.mx/product-page/display-anodo-comun-rojo-7-segmentos-10-piezas</item>
+        <item>ds0008@http://www.h-avr.mx/product-page/display-grafico-128x64-azul</item>
+        <item>ds0006@http://www.h-avr.mx/product-page/display-grafico-128x64</item>
+        <item>ds0005@http://www.h-avr.mx/product-page/lcd-20x4-con-modulo-i2c</item>
+        <item>ds0003@http://www.h-avr.mx/product-page/lcd-20x4-azul</item>
+        <item>ds0002@http://www.h-avr.mx/product-page/lcd-16x2-verde</item>
+        <item>ds0001@http://www.h-avr.mx/product-page/lcd-16x2-azul</item>
+    </string-array>
+
+    <string-array name="base_modulos">
+        <item>mo0024@http://www.h-avr.mx/product-page/lm2596-modulo-step-down-display-convertidor-dc</item>
+        <item>mo0023@http://www.h-avr.mx/product-page/lm2596-modulo-step-down-arduino-pic</item>
+        <item>mo0022@http://www.h-avr.mx/product-page/lm2577-step-up-arduino-pic</item>
+        <item>mo0021@http://www.h-avr.mx/product-page/modulo-controlador-lcd-i2c-3-piezas</item>
+        <item>mo0020@http://www.h-avr.mx/product-page/lcd16x2-con-modulo-i2c</item>
+        <item>mo0018@http://www.h-avr.mx/product-page/modulo-l298n-puente-h</item>
+        <item>mo0017@http://www.h-avr.mx/product-page/controlador-l293d-arduino-motores</item>
+        <item>mo0016@http://www.h-avr.mx/product-page/grabador-de-voz-isd1820</item>
+        <item>mo0015@http://www.h-avr.mx/product-page/wifi-esp8266-ai-thinker</item>
+        <item>mo0014@http://www.h-avr.mx/product-page/m%C3%B3dulo-wifi-esp8266</item>
+        <item>mo0013@http://www.h-avr.mx/product-page/encoder-tipo-potenci%C3%B3metro</item>
+        <item>mo0012@http://www.h-avr.mx/product-page/reloj-en-tiempo-real-ds1302</item>
+        <item>mo0011@http://www.h-avr.mx/product-page/lcd-20x4-verde</item>
+        <item>mo0010@http://www.h-avr.mx/product-page/usb-ttl-cp2102-usb-to-uart-bridge-virtual-com</item>
+         <item>mo0009@http://www.h-avr.mx/product-page/display-anodo-comun-rojo-7-segmentos-10-piezas</item>
+        <item>mo0008@http://www.h-avr.mx/product-page/display-grafico-128x64-azul</item>
+        <item>mo0007@http://www.h-avr.mx/product-page/controlador-de-motor-a-pasos-a4988</item>
+        <item>mo0006@http://www.h-avr.mx/product-page/m%C3%B3dulo-de-8-relevadores</item>
+        <item>mo0005@http://www.h-avr.mx/product-page/m%C3%B3dulo-de-4-relevadores-activado-por-ir</item>
+        <item>mo0004@http://www.h-avr.mx/product-page/m%C3%B3dulo-de-4-relevadores</item>
+        <item>mo0003@http://www.h-avr.mx/product-page/modulo-2-relevadores</item>
+        <item>mo0002@http://www.h-avr.mx/product-page/modulo-1-relevador</item>
+        <item>mo0001@http://www.h-avr.mx/product-page/modulo-step-up-150-boost-subir-tensi%C3%B3n</item>
+    </string-array>
+
+
+    <string name="title_activity_actividad_pdf">ActividadPDF</string>
+    <string name="tutorial_a">En este tutorial encontrarás los pasos a seguir para armar una caja para el arduino mega.</string>
+    <string name="tutorial_b">Sigue los pasos de este tutorial para aprender a usar un cargador de baterias lipo.</string>
+    <string name="tutorial_c">Una celda peltier es un dispositivo que puede generar una diferencia de temperatura entre sus caras, al ser circulados por una corriente una de sus caras se comienza a enfriar, la otra cara se calienta</string>
+    <string name="tutorial_d">En este tutorial aprenderas a usar un modulo amplificador de audio PAM8403.</string>
+    <string name="tutorial_e">Aprenderas a usar un termostato W1209, control de temperatura usado regularmente en incubadoras.</string>
+    <string name="tutorial_f">Aprenderas a usar una pantalla oled con arduino.</string>
+
+</resources>

@@ -1,0 +1,18 @@
+CR0169,"Display 0.56"", 4 digitos, 7 segmentos",,$60.00,24
+DS0017,"Display 7 segmentos 3 Digitos 0.36"" Cátodo Común",,$26.00,0
+DS0018,"Display 7 Segmentos 4 Digitos 0.36"" Cátodo Común",,$30.00,416
+DS0019,"Display 7 Segmentos 4 Digitos 0.56"" Cátodo Común",,$30.00,236
+DS0016,"Display 7 Segmentos 4 Digitos 0.56"", Cátodo Común",,$35.00,76
+DS0007,Display anodo comun,,$15.09,0
+DS0009,"Display anodo rojo 7 segmentos, 1 digito",,$10.00,0
+DS0010,"Display catodo 7 segmentos, 1 digito",,$10.00,689
+DS0004,Display doble,,$15.00,0
+DS0008,Display grafico 128x64 azul,,$259.00,0
+DS0006,Display grafico 128x64 verde,,$259.00,0
+DS0012,"LCD 16x1, recuperada",,$45.00,85
+DS0001,LCD 16x2 azul,,$69.00,82
+DS0013,"LCD 16x2 sin luz, recuperada",,$70.00,48
+DS0002,LCD 16x2 verde,,$69.00,36
+DS0003,"LCD 20x4, azul",,$170.00,25
+DS0011,"LCD 20x4, verde",,$179.00,0
+DS0014,"Pantalla OLED 0.96""",,$169.00,0
