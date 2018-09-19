@@ -58,10 +58,10 @@ public class ActividadEscogerPDF extends AppCompatActivity {
 
     private void llenarTutoriales() {
         listaTutoriales.add(new TutorialesVo("Montaje caja arduino mega",getResources().getString(R.string.tutorial_a),R.drawable.ar0008));
-        listaTutoriales.add(new TutorialesVo("Cargador de batería LIPO ",getResources().getString(R.string.tutorial_b),R.drawable.br0000));
+        listaTutoriales.add(new TutorialesVo("Cargador de batería LIPO ",getResources().getString(R.string.tutorial_b),R.drawable.mo0025));
         listaTutoriales.add(new TutorialesVo("Celda peltier 12706 con sensor de temperatura MLX90614",getResources().getString(R.string.tutorial_c),R.drawable.mo0041));
-        listaTutoriales.add(new TutorialesVo("Bluetooth con amplificador PAM8403",getResources().getString(R.string.tutorial_d),R.drawable.mo0035));
-        listaTutoriales.add(new TutorialesVo("Termostato W1209",getResources().getString(R.string.tutorial_e),R.drawable.mo0036));
+        listaTutoriales.add(new TutorialesVo("Bluetooth con amplificador PAM8403",getResources().getString(R.string.tutorial_d),R.drawable.mo0146));
+        listaTutoriales.add(new TutorialesVo("Termostato W1209",getResources().getString(R.string.tutorial_e),R.drawable.mo0111));
         listaTutoriales.add(new TutorialesVo("Pantalla OLED 0.96",getResources().getString(R.string.tutorial_f),R.drawable.ds0021));
     }
 }

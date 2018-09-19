@@ -9,5 +9,6 @@ public class TomarFoto extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tomar_foto);
+        // Datos
     }
 }
