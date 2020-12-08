@@ -1,49 +1,58 @@
 package com.ventas.havr.havrventas;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.android.billingclient.api.BillingClient;
+import com.android.billingclient.api.BillingClientStateListener;
+import com.android.billingclient.api.BillingResult;
+import com.android.billingclient.api.Purchase;
+import com.android.billingclient.api.PurchasesUpdatedListener;
+import com.android.billingclient.api.SkuDetails;
+import com.android.billingclient.api.SkuDetailsParams;
+import com.android.billingclient.api.SkuDetailsResponseListener;
+import com.ventas.havr.havrventas.Adaptadores.AdaptadorSKU;
 import com.ventas.havr.havrventas.Adaptadores.TutorialesVo;
+import com.ventas.havr.havrventas.Modelos.BaseSKU;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import io.realm.Case;
+import io.realm.Realm;
+import io.realm.RealmChangeListener;
+import io.realm.RealmResults;
 
 public class ActividadEscogerPDF extends AppCompatActivity {
+
     ArrayList<TutorialesVo> listaTutoriales;
     RecyclerView recyclerViewTutoriales;
 
     private Button BtEnviar;
 
+    private static final String BASE_64_ENCODED_PUBLIC_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAp80FOe7lrKWGMBcdnn2dMEacQ7sMAszu2r4kxAy1wWpRGMgs7b4W11fWR5q+PMwqwXfmg+iUEwUOCe+HYU0IXY0MpRRDdI085gHG86LHa+Hc48UQ2CPmj38rhQE5O0+hLH8f7MQCylWQulJcmb6SChHWiQcumQKoPze5sJl3C/nq02MbK6wUSJ4yvlFHq6rI8m/mC3iqlAGdyToIbGDyBgvKyyh+roaRvzbh1DEAV6TAfy/9BYsOAsaUC09u0wFGTAYX8kEX5kfrH5jUPV74Hs6EHFWh/1VpRbOUgqX9fQg3mNW1qtGvRewLUxh9o4/IBq3yw2GUTUU1N5j4DX2QzwIDAQAB";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_actividad_escoger_pdf);
 
-        listaTutoriales = new ArrayList<>();
         recyclerViewTutoriales = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerViewTutoriales.setLayoutManager(new LinearLayoutManager(this));
-
-        llenarTutoriales();
-
-        RecyclerAdapterPDF adapterPDF = new RecyclerAdapterPDF(listaTutoriales);
-        adapterPDF.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intentoa = new Intent(ActividadEscogerPDF.this,ActividadPDF.class);
-                intentoa.putExtra("Tutorial",recyclerViewTutoriales.getChildAdapterPosition(view));
-                startActivity(intentoa);
-                Toast.makeText(getApplicationContext(),"Seleccion:"+
-                        listaTutoriales.get(recyclerViewTutoriales.getChildAdapterPosition(view)).getTitulo(),
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
-        recyclerViewTutoriales.setAdapter(adapterPDF);
 
         BtEnviar = (Button) findViewById(R.id.bt_enviar);
         BtEnviar.setOnClickListener(new View.OnClickListener() {
@@ -56,12 +65,6 @@ public class ActividadEscogerPDF extends AppCompatActivity {
         });
     }
 
-    private void llenarTutoriales() {
-        listaTutoriales.add(new TutorialesVo("Montaje caja arduino mega",getResources().getString(R.string.tutorial_a),R.drawable.ar0008));
-        listaTutoriales.add(new TutorialesVo("Cargador de batería LIPO ",getResources().getString(R.string.tutorial_b),R.drawable.mo0025));
-        listaTutoriales.add(new TutorialesVo("Celda peltier 12706 con sensor de temperatura MLX90614",getResources().getString(R.string.tutorial_c),R.drawable.mo0041));
-        listaTutoriales.add(new TutorialesVo("Bluetooth con amplificador PAM8403",getResources().getString(R.string.tutorial_d),R.drawable.mo0146));
-        listaTutoriales.add(new TutorialesVo("Termostato W1209",getResources().getString(R.string.tutorial_e),R.drawable.mo0111));
-        listaTutoriales.add(new TutorialesVo("Pantalla OLED 0.96",getResources().getString(R.string.tutorial_f),R.drawable.ds0021));
-    }
+
+
 }

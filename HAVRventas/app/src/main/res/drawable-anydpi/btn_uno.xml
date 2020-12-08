@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android = "http://schemas.android.com/apk/res/android"
+    android:color="#023d61"
+    android:shape="rectangle">
+
+    <item android:drawable="@drawable/bt_principal"
+        android:state_pressed="false"/>
+
+    <item android:drawable="@drawable/bt_principal_press"
+        android:state_pressed="true"/>
+
+
+
+    <corners android:radius="15dp"/>
+
+    <stroke
+        android:width="150px"
+        android:color="@color/divider"/>
+</ripple>

@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Herramientas.ResistenciaParalelo">
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:fontFamily="@font/press_start_2p"
+        android:text="Resistencias en paralelo"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/bt_agregar_res"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/boton_carrito"
+        android:text="Agregar resistencia"
+        android:textColor="@color/verde_resultado"
+        app:layout_constraintBottom_toBottomOf="@+id/bt_borrar_res"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/bt_borrar_res"
+        app:layout_constraintTop_toTopOf="@+id/bt_borrar_res" />
+
+    <Button
+        android:id="@+id/bt_borrar_res"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/boton_carrito"
+        android:text="Eliminar resistencia"
+        android:textColor="@color/verde_resultado"
+        app:layout_constraintEnd_toStartOf="@+id/bt_agregar_res"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+    <TextView
+        android:id="@+id/valor_res"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+
+        android:gravity="center"
+        android:text="Valor total resistencia: 0 ohms"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt_agregar_res" />
+
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/valor_res">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <EditText
+                android:id="@+id/edit_r8"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/edit_componente"
+                android:ems="10"
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLength="3"
+                app:layout_constraintEnd_toStartOf="@+id/spin_r8"
+                app:layout_constraintTop_toBottomOf="@+id/edit_r7" />
+
+            <Spinner
+                android:id="@+id/spin_r8"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/edit_r8"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/edit_r8" />
+
+            <TextView
+                android:id="@+id/tx_res8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/press_start_2p"
+                android:text="R8"
+                app:layout_constraintBottom_toBottomOf="@+id/edit_r8"
+                app:layout_constraintEnd_toStartOf="@+id/edit_r8"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/edit_r8" />
+
+            <EditText
+                android:id="@+id/edit_r7"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/edit_componente"
+                android:ems="10"
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLength="3"
+                app:layout_constraintEnd_toStartOf="@+id/spin_r7"
+                app:layout_constraintTop_toBottomOf="@+id/edit_r6" />
+
+            <Spinner
+                android:id="@+id/spin_r7"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/edit_r7"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/edit_r7" />
+
+            <TextView
+                android:id="@+id/tx_res7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/press_start_2p"
+                android:text="R7"
+                app:layout_constraintBottom_toBottomOf="@+id/edit_r7"
+                app:layout_constraintEnd_toStartOf="@+id/edit_r7"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/edit_r7" />
+
+            <EditText
+                android:id="@+id/edit_r6"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/edit_componente"
+                android:ems="10"
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLength="3"
+                app:layout_constraintEnd_toStartOf="@+id/spin_r6"
+                app:layout_constraintTop_toBottomOf="@+id/edit_r5" />
+
+            <Spinner
+                android:id="@+id/spin_r6"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/edit_r6"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/edit_r6" />
+
+            <TextView
+                android:id="@+id/tx_res6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/press_start_2p"
+                android:text="R6"
+                app:layout_constraintBottom_toBottomOf="@+id/edit_r6"
+                app:layout_constraintEnd_toStartOf="@+id/edit_r6"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/edit_r6" />
+
+            <EditText
+                android:id="@+id/edit_r5"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/edit_componente"
+                android:ems="10"
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLength="3"
+                app:layout_constraintEnd_toStartOf="@+id/spin_r5"
+                app:layout_constraintTop_toBottomOf="@+id/edit_r4" />
+
+            <Spinner
+                android:id="@+id/spin_r5"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/edit_r5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/edit_r5" />
+
+            <TextView
+                android:id="@+id/tx_res5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/press_start_2p"
+                android:text="R5"
+                app:layout_constraintBottom_toBottomOf="@+id/edit_r5"
+                app:layout_constraintEnd_toStartOf="@+id/edit_r5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/edit_r5" />
+
+            <EditText
+                android:id="@+id/edit_r4"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/edit_componente"
+                android:ems="10"
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLength="3"
+                app:layout_constraintEnd_toStartOf="@+id/spin_r4"
+                app:layout_constraintTop_toBottomOf="@+id/edit_r3" />
+
+            <Spinner
+                android:id="@+id/spin_r4"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/edit_r4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/edit_r4" />
+
+            <TextView
+                android:id="@+id/tx_res4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/press_start_2p"
+                android:text="R4"
+                app:layout_constraintBottom_toBottomOf="@+id/edit_r4"
+                app:layout_constraintEnd_toStartOf="@+id/edit_r4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/edit_r4" />
+
+            <EditText
+                android:id="@+id/edit_r3"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/edit_componente"
+                android:ems="10"
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLength="3"
+                app:layout_constraintEnd_toStartOf="@+id/spin_r2"
+                app:layout_constraintTop_toBottomOf="@+id/edit_r2" />
+
+            <Spinner
+                android:id="@+id/spin_r3"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/edit_r3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/edit_r3"
+                app:layout_constraintTop_toTopOf="@+id/edit_r3" />
+
+            <TextView
+                android:id="@+id/tx_res3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:fontFamily="@font/press_start_2p"
+                android:text="R3"
+                app:layout_constraintBottom_toBottomOf="@+id/edit_r3"
+                app:layout_constraintEnd_toStartOf="@+id/edit_r3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/edit_r3" />
+
+            <EditText
+                android:id="@+id/edit_r2"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/edit_componente"
+                android:ems="10"
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLength="3"
+                app:layout_constraintEnd_toStartOf="@+id/spin_r2"
+                app:layout_constraintTop_toBottomOf="@+id/edit_r1" />
+
+            <Spinner
+                android:id="@+id/spin_r2"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/edit_r2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/edit_r2"
+                app:layout_constraintVertical_bias="0.666" />
+
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:fontFamily="@font/press_start_2p"
+                android:text="R2"
+                app:layout_constraintBottom_toBottomOf="@+id/edit_r2"
+                app:layout_constraintEnd_toStartOf="@+id/edit_r2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/edit_r2" />
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:fontFamily="@font/press_start_2p"
+                android:text="R1"
+                app:layout_constraintBottom_toBottomOf="@+id/edit_r1"
+                app:layout_constraintEnd_toStartOf="@+id/edit_r1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/edit_r1" />
+
+
+            <EditText
+                android:id="@+id/edit_r1"
+                android:layout_width="150dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/edit_componente"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:ems="10"
+
+                android:inputType="number"
+                android:maxLength="3"
+                app:layout_constraintEnd_toStartOf="@+id/spin_r1"
+                app:layout_constraintTop_toBottomOf="@+id/valor_res" />
+
+            <Spinner
+                android:id="@+id/spin_r1"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/edit_r1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/edit_r1"
+                app:layout_constraintVertical_bias="0.346" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView16"
+        app:srcCompat="@drawable/resistencia_paralelo" />
+</androidx.constraintlayout.widget.ConstraintLayout>

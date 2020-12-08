@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_agregar"
+        android:icon="@mipmap/ic_logo_carrito_a_round"
+        android:orderInCategory="100"
+        android:title="Agregar al carrito"
+        android:visible="true"
+        app:showAsAction="ifRoom|withText" />
+    <item
+        android:id="@+id/action_pdf"
+        android:icon="@mipmap/ic_logo_pdf_a_round"
+        android:orderInCategory="100"
+        android:title="DataSheet" />
+
+    <item
+        android:id="@+id/action_mercadolibre"
+        android:icon="@mipmap/ic_logo_mercadolibre_a_round"
+        android:orderInCategory="100"
+        android:title="MercadoLibre"
+        app:showAsAction="withText" />
+    <item
+        android:id="@+id/action_kichink"
+        android:icon="@mipmap/ic_logo_kichink_a_round"
+        android:orderInCategory="100"
+        android:title="Kichink" />
+</menu>

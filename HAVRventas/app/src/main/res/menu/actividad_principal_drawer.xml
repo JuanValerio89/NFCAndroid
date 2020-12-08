@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_distribuidor"
+            android:icon="@drawable/ic_action_distribuidor"
+            android:title="Precios mayorista" />
+
+    </group>
+
+    <item android:title="Contactanos">
+        <menu>
+            <item
+                android:id="@+id/nav_facebook"
+                android:icon="@drawable/logo_facebook"
+                android:title="Facebook" />
+            <item
+                android:id="@+id/nav_mercadolibre"
+                android:icon="@drawable/mercado_libre_a"
+                android:title="MercadoLibre" />
+            <item
+                android:id="@+id/nav_youtube"
+                android:icon="@drawable/youtube"
+                android:title="Youtube" />
+            <item
+                android:id="@+id/nav_whatsapp"
+                android:icon="@drawable/ic_whatsapp"
+                android:title="Whatsapp" />
+            <item
+                android:id="@+id/nav_correo"
+                android:icon="@drawable/ic_correo_enviar"
+                android:title="Correo" />
+            <item
+                android:id="@+id/nav_salir"
+                android:icon="@drawable/ic_action_subir_bajar"
+                android:title="Salir" />
+        </menu>
+    </item>
+
+</menu>

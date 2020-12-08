@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "350374160123",
+    "firebase_url": "https://havr-ventas.firebaseio.com",
+    "project_id": "havr-ventas",
+    "storage_bucket": "havr-ventas.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:350374160123:android:95c02cb5271aa7f1",
+        "android_client_info": {
+          "package_name": "com.ventas.havr.havrventas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "350374160123-10m0nrmbqhmfbcs2v4hegrcdnrbsg8jt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ventas.havr.havrventas",
+            "certificate_hash": "f837225ac191ba19d0136580df1ef9dc316a8106"
+          }
+        },
+        {
+          "client_id": "350374160123-qa20eog1vnse4edu0uv6djkbcd3gr41i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDK3h_qjKCA7-OTEXNMiAEg8XBzmTxll-w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "350374160123-qa20eog1vnse4edu0uv6djkbcd3gr41i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.ventas.havr.havrventas.ActividadPDF">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_distribuidor"
         android:orderInCategory="100"
-        android:title="actividad"
+        android:title="Distribuidor"
         app:showAsAction="never" />
 </menu>

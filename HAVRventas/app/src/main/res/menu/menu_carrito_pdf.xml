@@ -1,0 +1,18 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".Main" >
+
+    <item android:id="@+id/carrito"
+        android:icon="@drawable/ic_logo_carrito_c"
+        android:title="Carrito"
+        android:orderInCategory="1"
+        app:showAsAction="ifRoom" />
+
+    <item android:id="@+id/pdf_boton"
+        android:icon="@drawable/ic_action_pdf"
+        android:title="PDF"
+        android:orderInCategory="1"
+        app:showAsAction="ifRoom" />
+
+</menu>

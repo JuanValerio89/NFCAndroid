@@ -1,44 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="100dp"
     android:background="@drawable/borde_redondo_a"
-    android:layout_height="60dp"
     android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/tx_descripcioon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:paddingTop="5dp"
+
+        android:paddingRight="10dp"
+        android:text="Texto nuevo"
+        android:textSize="10sp"
+        app:layout_constraintStart_toEndOf="@+id/imagen_list_view"
+        app:layout_constraintTop_toBottomOf="@+id/tx_titulo" />
 
     <ImageView
         android:id="@+id/imagen_list_view"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center_vertical"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_margin="25dp"
 
-        app:srcCompat="@drawable/ar0009" />
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="16dp" />
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <TextView
+        android:id="@+id/tx_titulo"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:paddingTop="5dp"
+        android:text="TextView"
+        android:textColor="@android:color/background_dark"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/imagen_list_view"
+        tools:layout_editor_absoluteY="1dp" />
 
-        <TextView
-            android:id="@+id/tx_titulo"
-            android:layout_width="match_parent"
-            android:paddingTop="5dp"
-            android:layout_height="wrap_content"
-            android:textSize="15dp"
-            android:textColor="@android:color/background_dark"
-            android:text="TextView" />
+    <TextView
+        android:id="@+id/text_precio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Precio:"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        <TextView
-            android:id="@+id/tx_descripcioon"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingRight="10dp"
-            android:paddingTop="5dp"
-            android:layout_gravity="center_vertical"
-            android:text="Texto nuevo"
-
-            android:textSize="12dp" />
-    </LinearLayout>
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

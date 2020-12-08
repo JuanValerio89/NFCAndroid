@@ -1,409 +1,349 @@
 package com.ventas.havr.havrventas;
 
+import android.app.AlertDialog;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.support.v7.app.AppCompatActivity;
+import android.content.SharedPreferences;
+import android.net.Uri;
+import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.Spinner;
-import android.widget.TextView;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.Toast;
 
-import com.squareup.picasso.Picasso;
+import androidx.appcompat.app.AppCompatActivity;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
+import com.bumptech.glide.Glide;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
+import com.ventas.havr.havrventas.Adaptadores.AdaptadorSKU;
+import com.ventas.havr.havrventas.Modelos.BaseCotizaciones;
+import com.ventas.havr.havrventas.Modelos.BaseImagenes;
+import com.ventas.havr.havrventas.Modelos.BasePedidos;
+import com.ventas.havr.havrventas.Modelos.BaseSKU;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.UUID;
 
-public class MaterialSKU extends AppCompatActivity {
+import io.realm.Realm;
+import io.realm.RealmChangeListener;
+import io.realm.RealmList;
+import io.realm.RealmResults;
+
+public class MaterialSKU extends AppCompatActivity implements RealmChangeListener<BaseSKU>, AdapterView.OnItemClickListener {
 
     // Final String
     final private static String TAG = "MaterialSKU";
-    // Variables
-    public String[] row;
-    public String[] SpinString = new String[ 400 ];
-    public String[] SpinStringA = new String[ 400 ];
-    public String[] ConjuntoBase;
-    private List scoreList;
-    String data;
-    String imagen;
-    String Sku;
-    String TipoComponente;
+    final public static int KICHINK = 0;
+    final public static int MERCADO = 1;
+    final public static int PDF = 2;
+
+    private String data;
+    private String imagen;
+    private String Sku;
+    private String TiempoActualizar;
+    private String SKUEnviar;
+    private String TiempoActualizarPreference;
+
+    private int posicion = 0;
+    // FIREBASE
+    private DatabaseReference dbPrecio;
+    private ValueEventListener eventListener;
+    //private DatabaseReference ActualizaPrecio;
 
     // XML
-    private Button BtAgregar;
-    private ImageView ImagenPerfiles;
-    private TextView TxComponente;
-    private TextView TxResultado;
-    private ProgressBar BarraEspera;
+    private ListView ListaSKU;
+
+    // BASE DE DATOS
+    public Realm realm;
+    private RealmResults<BaseSKU> ResulstBaseSKU;
+    private RealmResults<BaseImagenes> ResulstBaseImagenes;
+    private BaseImagenes baseImages;
+    private BaseCotizaciones baseCotizaciones;
+    private RealmList<BasePedidos> basePedidos;
+    private BasePedidos basePed;
+    private BaseCotizaciones baseCot;
+
+    private int NumCotizacion;
+    public int NumPiezasAgregar = 0;
+    private String TipoUsuario = "";
+    private int usuario = 0;
+    // Preferencias
+    private SharedPreferences.Editor editor;
+    private SharedPreferences prefs;
+
+    // Adaptador
+    private AdaptadorSKU adaptador;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_material_sku);
 
-        Spinner spinner = (Spinner) findViewById(R.id.spinner_perfiles);
-        ImagenPerfiles = (ImageView) findViewById(R.id.image_perfiles);
-        TxComponente = (TextView) findViewById(R.id.tx_componente);
-        BtAgregar = (Button) findViewById(R.id.bt_agregar);
-        TxResultado = (TextView) findViewById(R.id.tx_resultado);
-        BarraEspera = (ProgressBar) findViewById(R.id.progressBar);
-
         Intent intent = getIntent();
-        int ValorItem = intent.getIntExtra("Posicion",0);
-        TipoComponente = intent.getStringExtra("SPerfil");
-        TxComponente.setText(TipoComponente);
+        int ValorItem = intent.getIntExtra("Posicion", 0);
+        String Material = intent.getStringExtra("SPerfil");
+        ListaSKU = findViewById(R.id.list_sku);
+        this.setTitle(Material);
+        // REALM
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        NumCotizacion = prefs.getInt("Cotizacion", 0);
+        Log.d(TAG, "Numero cot:" + NumCotizacion);
 
-        InputStream inputStream;
-        CSVFile csvFile;
-
-        switch (ValorItem){
-            case 0:
-                ImagenPerfiles.setImageResource(R.drawable.im_arduino);
-                Log.d("Componente","Info:"+ValorItem);
-                inputStream = getResources().openRawResource(R.raw.arduino);
-                csvFile = new CSVFile(inputStream);
-                scoreList = csvFile.read();
-                Log.d("Perfiles","Info: B"+ scoreList.size());
-                break;
-            case 1:
-                ImagenPerfiles.setImageResource(R.drawable.im_bateria);
-                Log.d("Componente","Info:"+ValorItem);
-                inputStream = getResources().openRawResource(R.raw.arduino);
-                csvFile = new CSVFile(inputStream);
-                scoreList = csvFile.read();
-                Log.d("Perfiles","Info: B"+ scoreList.size());
-                break;
-            case 2:
-                ImagenPerfiles.setImageResource(R.drawable.im_broca);
-                Log.d("Componente","Info:"+ValorItem);
-                inputStream = getResources().openRawResource(R.raw.brocas);
-                csvFile = new CSVFile(inputStream);
-                scoreList = csvFile.read();
-                Log.d("Perfiles","Info: B"+ scoreList.size());
-                break;
-            case 3:
-                ImagenPerfiles.setImageResource(R.drawable.im_bluetooth);
-                Log.d("Componente","Info:"+ValorItem);
-                inputStream = getResources().openRawResource(R.raw.bluetooth);
-                csvFile = new CSVFile(inputStream);
-                scoreList = csvFile.read();
-                Log.d("Perfiles","Info: B"+ scoreList.size());
-                break;
-            case 4:
-                ImagenPerfiles.setImageResource(R.drawable.im_cable);
-                Log.d("Componente","Info:"+ValorItem);
-                inputStream = getResources().openRawResource(R.raw.arduino);
-                csvFile = new CSVFile(inputStream);
-                scoreList = csvFile.read();
-                Log.d("Perfiles","Info: B"+ scoreList.size());
-                break;
-            case 5:
-                ImagenPerfiles.setImageResource(R.drawable.im_capacitor);
-                Log.d("Componente","Info:"+ValorItem);
-                inputStream = getResources().openRawResource(R.raw.arduino);
-                csvFile = new CSVFile(inputStream);
-                scoreList = csvFile.read();
-                Log.d("Perfiles","Info: B"+ scoreList.size());
-                break;
-            case 6:
-                ImagenPerfiles.setImageResource(R.drawable.im_cautin);
-                Log.d("Componente","Info:"+ValorItem);
-                inputStream = getResources().openRawResource(R.raw.arduino);
-                csvFile = new CSVFile(inputStream);
-                scoreList = csvFile.read();
-                Log.d("Perfiles","Info: B"+ scoreList.size());
-                break;
-            case 7:
-                ImagenPerfiles.setImageResource(R.drawable.im_circuito);
-                Log.d("Componente","Info:"+ValorItem);
-                inputStream = getResources().openRawResource(R.raw.arduino);
-                csvFile = new CSVFile(inputStream);
-                scoreList = csvFile.read();
-                Log.d("Perfiles","Info: B"+ scoreList.size());
-                break;
-            case 8:
-                ImagenPerfiles.setImageResource(R.drawable.im_cable);
-                Log.d("Componente","Info:"+ValorItem);
-                inputStream = getResources().openRawResource(R.raw.arduino);
-                csvFile = new CSVFile(inputStream);
-                scoreList = csvFile.read();
-                Log.d("Perfiles","Info: B"+ scoreList.size());
-                break;
-            case 9:
-                ImagenPerfiles.setImageResource(R.drawable.im_disipador);
-                Log.d("Componente","Info:"+ValorItem);
-                inputStream = getResources().openRawResource(R.raw.arduino);
-                csvFile = new CSVFile(inputStream);
-                scoreList = csvFile.read();
-                Log.d("Perfiles","Info: B"+ scoreList.size());
-                break;
-            case 10:
-                ImagenPerfiles.setImageResource(R.drawable.im_dip);
-                Log.d("Componente","Info:"+ValorItem);
-                inputStream = getResources().openRawResource(R.raw.arduino);
-                csvFile = new CSVFile(inputStream);
-                scoreList = csvFile.read();
-                Log.d("Perfiles","Info: B"+ scoreList.size());
-                break;
-            case 11:
-                ImagenPerfiles.setImageResource(R.drawable.im_display);
-                Log.d("Componente","Info:"+ValorItem);
-                inputStream = getResources().openRawResource(R.raw.displays);
-                csvFile = new CSVFile(inputStream);
-                scoreList = csvFile.read();
-                Log.d("Perfiles","Info: B"+ scoreList.size());
-                break;
-            case 12:
-                ImagenPerfiles.setImageResource(R.drawable.im_header);
-                Log.d("Componente","Info:"+ValorItem);
-                inputStream = getResources().openRawResource(R.raw.displays);
-                csvFile = new CSVFile(inputStream);
-                scoreList = csvFile.read();
-                Log.d("Perfiles","Info: B"+ scoreList.size());
-                break;
-            case 13:
-                ImagenPerfiles.setImageResource(R.drawable.im_hv);
-                Log.d("Componente","Info:"+ValorItem);
-                inputStream = getResources().openRawResource(R.raw.displays);
-                csvFile = new CSVFile(inputStream);
-                scoreList = csvFile.read();
-                Log.d("Perfiles","Info: B"+ scoreList.size());
-                break;
-            case 14:
-                ImagenPerfiles.setImageResource(R.drawable.im_laser);
-                Log.d("Componente","Info:"+ValorItem);
-                inputStream = getResources().openRawResource(R.raw.displays);
-                csvFile = new CSVFile(inputStream);
-                scoreList = csvFile.read();
-                Log.d("Perfiles","Info: B"+ scoreList.size());
-                break;
-            case 15:
-                ImagenPerfiles.setImageResource(R.drawable.im_led);
-                Log.d("Componente","Info:"+ValorItem);
-                inputStream = getResources().openRawResource(R.raw.displays);
-                csvFile = new CSVFile(inputStream);
-                scoreList = csvFile.read();
-                Log.d("Perfiles","Info: B"+ scoreList.size());
-                break;
-            case 16:
-                ImagenPerfiles.setImageResource(R.drawable.im_medidor);
-                Log.d("Componente","Info:"+ValorItem);
-                inputStream = getResources().openRawResource(R.raw.displays);
-                csvFile = new CSVFile(inputStream);
-                scoreList = csvFile.read();
-                Log.d("Perfiles","Info: B"+ scoreList.size());
-                break;
-            case 17:
-                ImagenPerfiles.setImageResource(R.drawable.im_modulos);
-                Log.d("Componente","Info:"+ValorItem);
-                inputStream = getResources().openRawResource(R.raw.modulos);
-                csvFile = new CSVFile(inputStream);
-                scoreList = csvFile.read();
-                Log.d("Perfiles","Info: B"+ scoreList.size());
-                break;
-            case 18:
-                ImagenPerfiles.setImageResource(R.drawable.im_motores);
-                Log.d("Componente","Info:"+ValorItem);
-                inputStream = getResources().openRawResource(R.raw.displays);
-                csvFile = new CSVFile(inputStream);
-                scoreList = csvFile.read();
-                Log.d("Perfiles","Info: B"+ scoreList.size());
-                break;
-
+        realm = Realm.getDefaultInstance();
+        baseCotizaciones = realm.where(BaseCotizaciones.class).equalTo("id", NumCotizacion).findFirst();
+        basePedidos = baseCotizaciones.getBasePedidos();
+        ResulstBaseSKU = realm.where(BaseSKU.class).findAll();
+        TipoUsuario = prefs.getString(ActividadPrincipal.USUARIO, ActividadPrincipal.PUBLICO);
+        if (TipoUsuario.equals(ActividadPrincipal.DISTRIBUIDOR)) {
+            usuario = 1;   // Distribuidor
+        } else {
+            usuario = 0;   // Tienda
         }
-        // Colocar la información en el Spinner
-        final String[] SpinOtro = new String[ scoreList.size() ];
-        for(int ii = 0; ii < scoreList.size();ii++) {
-            SpinOtro[ii] = SpinString[ii]+ " - " + SpinStringA[ii];
-        };
-
-        spinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, SpinOtro));
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-            // Se selecciona por medida, la informamcion es procesado al corta por ","
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long id)
-            {
-                BarraEspera.setVisibility(View.VISIBLE);
-                TxResultado.setText(" ");
-                Sku = adapterView.getItemAtPosition(pos).toString();
-                String[] STsku = Sku.split(" ");
-                STsku[0] = STsku[0].toLowerCase();
-                getWebsite(STsku[0]);
-                Log.d(TAG,"Texto SKU:"+STsku[0]);
-                int resID = 0;
-                Log.d(TAG,"Tipo componente: "+TipoComponente);
-                TipoComponente = TipoComponente.toLowerCase();
-                if(TipoComponente.equals("brocas")){
-                    resID = getResources().getIdentifier("br0000" , "drawable", getPackageName());
-                }else{
-                    resID = getResources().getIdentifier(STsku[0] , "drawable", getPackageName());
-                }
-
-                ImagenPerfiles.setImageResource(resID);
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent)
-            {    }
-        });
-    }
-
-    public class CSVFile {
-        InputStream inputStream;
-
-        public CSVFile(InputStream inputStream){
-            this.inputStream = inputStream;
+        // Prefenciass
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        try {
+            TiempoActualizarPreference = prefs.getString("TiempoPrecios", "00-00-00");
+        } catch (Exception e) {
+            Log.e(TAG, "No existe la preferencia indicada.");
+            GuardarPrefenciaTiempo("00-00-00");
+            Log.e(TAG, "Almacenada..00-00-00");
+            TiempoActualizarPreference = "00-00-00";
         }
 
-        public List read(){
-            List resultList = new ArrayList();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-            try {
-                String csvLine;
-                int i = 0;
-                while ((csvLine = reader.readLine()) != null) {
-                    row = csvLine.split(",");
-                    SpinString[i] = row[0]; // Guarda el SKU
-                    SpinStringA[i] = row[1];  // Guarda el nombre del producto
-                    i += 1;
-                    resultList.add(row);
-                }
-
-            }
-            catch (IOException ex) {
-                throw new RuntimeException("Error in reading CSV file: "+ex);
-            }
-            finally {
-                try {
-                    inputStream.close();
-                }
-                catch (IOException e) {
-                    throw new RuntimeException("Error while closing input stream: "+e);
-                }
-            }
-            return resultList;
+        switch (ValorItem) {
+            case 0: // Arduinos
+                EnviarDatosLista("AR");
+                break;
+            case 1: // Baterias
+                EnviarDatosLista("BA");
+                break;
+            case 2: // Bases
+                EnviarDatosLista("BS");
+                break;
+            case 3: // Brocas
+                EnviarDatosLista("BR");
+                break;
+            case 4: // Bluetooth
+                EnviarDatosLista("BT");
+                break;
+            case 5: // Cables
+                EnviarDatosLista("CA");
+                break;
+            case 6: // Ceramicos
+                EnviarDatosLista("CC");
+                break;
+            case 7: // Cautines
+                EnviarDatosLista("CT");
+                break;
+            case 8: // Circuitos
+                EnviarDatosLista("CR");
+                break;
+            case 9: // Dupont
+                EnviarDatosLista("CS");
+                break;
+            case 10: // Disipadores
+                EnviarDatosLista("DI");
+                break;
+            case 11: // DIP switch
+                EnviarDatosLista("DP");
+                break;
+            case 12: // Display
+                EnviarDatosLista("DS");
+                break;
+            case 13: // Header
+                EnviarDatosLista("HR");
+                break;
+            case 14: // H_AVR
+                EnviarDatosLista("HV");
+                break;
+            case 15: // Laser
+                EnviarDatosLista("LS");
+                break;
+            case 16: // Leds
+                EnviarDatosLista("LD");
+                break;
+            case 17: // Medidores
+                EnviarDatosLista("ME");
+                break;
+            case 18: // Modulos
+                EnviarDatosLista("MO");
+                break;
+            case 19: // Motores
+                EnviarDatosLista("MT");
+                break;
+            case 20: // Placas
+                EnviarDatosLista("PL");
+                break;
+            case 21: // Potenciometros
+                EnviarDatosLista("PM");
+                break;
+            case 22: // Programadores
+                EnviarDatosLista("PR");
+                break;
+            case 23: // Pinzas
+                EnviarDatosLista("PS");
+                break;
+            case 24: // Radiofrecuencia
+                EnviarDatosLista("RF");
+                break;
+            case 25: // Radiofrecuencia
+                EnviarDatosLista("RM");
+                break;
+            case 26: // Resistencias
+                EnviarDatosLista("RS");
+                break;
+            case 27: // Relevadores
+                EnviarDatosLista("RY");
+                break;
+            case 28: // CNC Router
+                EnviarDatosLista("CN");
+                break;
+            case 29: // Celda Solar
+                EnviarDatosLista("SL");
+                break;
+            case 30: // Sistema minimo
+                EnviarDatosLista("SM");
+                break;
+            case 31: // Sensores
+                EnviarDatosLista("SR");
+                break;
+            case 32: // Servomotor
+                EnviarDatosLista("SV");
+                break;
+            case 33: // Switch
+                EnviarDatosLista("SW");
+                break;
+            case 34: // Terminal Block
+                EnviarDatosLista("TB");
+                break;
+            case 35: // Transformadores
+                EnviarDatosLista("TM");
+                break;
+            case 36: // Potenciometro lineal
+                EnviarDatosLista("TR");
+                break;
+            case 37: // Trimpos
+                EnviarDatosLista("TV");
+                break;
         }
     }
 
-    private void getWebsite(final String sku) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                final StringBuilder builder = new StringBuilder();
-                String srcLink = "http://www.h-avr.mx/product-page/arduino-lilypad-usb";
-                //Obtener el arreglo String de values
-                Resources res = getResources();
-                TipoComponente = TipoComponente.toLowerCase();
-                String BaseConcatenar = "base_"+TipoComponente;
-                int resID = getResources().getIdentifier(BaseConcatenar , "array", getPackageName());
-                ConjuntoBase = res.getStringArray(resID);
-                for(int xx = 0; xx < ConjuntoBase.length; xx++)
-                {
-                    String[] DivisionDatos = ConjuntoBase[xx].split("@");
-                    String SKUchecar = DivisionDatos[0];
-                    if(sku.equals(SKUchecar)){
-                        srcLink = DivisionDatos[1];
-                    }
-                }
-                // Obtener el texto de la pagina
-                try {
-                    Document doc = Jsoup.connect(srcLink).get();
-                    Elements iframes  = doc.getElementsByTag("iframe");
-                    for (Element iframe1 : iframes) {
-                        String src = iframe1.attr("src");
-                        String title = iframe1.attr("title");
-                        Log.d("Material","Data:"+src+title);
-                        if(title.equals("Product Page"))
-                        {
-                            try {
-                            Document docA = Jsoup.connect(src).get();
-                            Elements metaTags  = docA.getElementsByTag("meta");
-                            for (Element metaTag : metaTags) {
-                                String name = metaTag.attr("property");
-                                String content = metaTag.attr("content");
-                                if(name.equals("og:description")) {
-                                    data = content;
-                                    Log.d("Material", "Data:" + name + content);
-                                }
-                            }
-                            } catch (IOException e) {
-                                builder.append("Error : ").append(e.getMessage()).append("\n");
-                            }
+    private void EnviarDatosLista(String buscar) {
+        SKUEnviar = buscar;
+        ResulstBaseSKU = realm.where(BaseSKU.class)
+                .beginsWith("SKU", buscar).findAll().sort("SKU");
+        ResulstBaseImagenes = realm.where(BaseImagenes.class)
+                .beginsWith("SKU", buscar).findAll().sort("SKU");
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String TipoUsuario = prefs.getString(ActividadPrincipal.USUARIO, ActividadPrincipal.PUBLICO);
+        int tipo = 0; // Publico
+        if (TipoUsuario.equals(ActividadPrincipal.DISTRIBUIDOR)) {
+            tipo = 1;  // Distribuidor
+        }
+        adaptador = new AdaptadorSKU(this, ResulstBaseSKU, ResulstBaseImagenes, R.layout.list_cot_item, tipo);
+        ListaSKU.setAdapter(adaptador);
+        ListaSKU.setOnItemClickListener(this);
+        registerForContextMenu(ListaSKU);
+    }
 
-                        }
-                    }
-                } catch (IOException e) {
-                    builder.append("Error : ").append(e.getMessage()).append("\n");
-                }
-
-                // Obtener imagen de la pagina
-                try {
-                    Log.d("Material","Obtener imagen");
-                    Document doc = Jsoup.connect("http://www.h-avr.mx/product-page/amplificador-de-audio-tda2050-25w").get();
-                    Elements iframes  = doc.getElementsByTag("iframe");
-                    for (Element iframe1 : iframes) {
-                        String src = iframe1.attr("src");
-                        String title = iframe1.attr("title");
-                        Log.d("Material","Data:"+src+title);
-                        if(title.equals("Product Page"))
-                        {
-                            Log.d("Material","Obtener imagen A");
-                            try {
-                                Document docA = Jsoup.connect(src).get();
-                                Elements metaTags  = docA.getElementsByTag("meta");
-                                for (Element metaTag : metaTags) {
-                                    String name = metaTag.attr("property");
-                                    String content = metaTag.attr("content");
-                                    Log.d("Material img", "Imagen:" + name + content);
-                                    if(name.equals("og:image")) {
-                                        Log.d("Material", "Data:"+ content);
-                                        imagen = content;
-
-                                        break;
-                                    }
-                                }
-                            } catch (IOException e) {
-                                builder.append("Error : ").append(e.getMessage()).append("\n");
-                            }
-                            break;
-                        }
-                    }
-                } catch (IOException e) {
-                    builder.append("Error : ").append(e.getMessage()).append("\n");
-                }
-
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        data = data.replace("<p>","");
-                        data = data.replace("</p>","");
-                        data = data.replace("<br>","\r\n");
-                        TxResultado.setText(data);
-                        BarraEspera.setVisibility(View.INVISIBLE);
-                        Log.d("MaterialSKU","Info:"+data);
-                    }
-                });
+    private void GuardarPrefenciaTiempo(String time) {
+        editor = prefs.edit();
+        editor.putString("TiempoPrecios", time);
+        editor.commit();
+    }
 
 
-            }
-        }).start();
+    @Override
+    public void onChange(BaseSKU baseSKU) {
+
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        posicion = position;
+        String SKUbuscar = ResulstBaseSKU.get(position).getSKU();
+        String Precio = ResulstBaseSKU.get(position).getPrecio();
+        if (TipoUsuario.equals(ActividadPrincipal.DISTRIBUIDOR)) {
+            Precio = ResulstBaseSKU.get(position).getPrecio();
+        } else
+            Precio = ResulstBaseSKU.get(position).getPrecioPublico();
+
+        baseImages = realm.where(BaseImagenes.class).equalTo("SKU", SKUbuscar).findFirst();
+        Intent intento = new Intent(MaterialSKU.this, DialogImage.class);
+        try {
+            intento.putExtra("LINK", baseImages.getLink());
+        } catch (Exception e) {
+
+        }
+        intento.putExtra("POSICION", position);
+        intento.putExtra("PRECIO", Precio);
+        intento.putExtra("SKU", SKUEnviar);
+        startActivity(intento);
+        overridePendingTransition(R.anim.left_in,R.anim.left_out);
+    }
+
+    // Base de datos
+    private void agregarComponente(String sku, String descripcion, String precioTienda, String precioPublico, String cantidad) {
+
+        if (usuario == 0) {
+            realm.beginTransaction();
+            BasePedidos tableBase = new BasePedidos(sku, descripcion, precioPublico, cantidad);
+            realm.copyToRealm(tableBase);
+            baseCotizaciones.getBasePedidos().add(tableBase);
+            realm.commitTransaction();
+            Toast.makeText(this, "El artículo agregado.", Toast.LENGTH_SHORT).show();
+        } else {
+            realm.beginTransaction();
+            BasePedidos tableBase = new BasePedidos(sku, descripcion, precioTienda, cantidad);
+            realm.copyToRealm(tableBase);
+            baseCotizaciones.getBasePedidos().add(tableBase);
+            realm.commitTransaction();
+            Toast.makeText(this, "El artículo agregado.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_carrito, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.carrito:
+                Log.d(TAG, "Ir al carrito");
+
+                Intent intento = new Intent(MaterialSKU.this, ActividadPedidos.class);
+                intento.putExtra("id", NumCotizacion);
+                startActivity(intento);
+                //overridePendingTransition(R.anim.left_in,R.anim.left_out);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.right_in,R.anim.right_out);
     }
 }

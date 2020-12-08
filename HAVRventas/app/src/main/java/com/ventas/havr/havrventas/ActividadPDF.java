@@ -2,12 +2,10 @@ package com.ventas.havr.havrventas;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.barteksc.pdfviewer.PDFView;
 import com.github.barteksc.pdfviewer.listener.OnLoadCompleteListener;
@@ -18,7 +16,7 @@ import com.shockwave.pdfium.PdfDocument;
 import java.util.List;
 
 public class ActividadPDF extends AppCompatActivity implements  OnPageChangeListener, OnLoadCompleteListener{
-    private static final String TAG = MainActivity.class.getSimpleName();
+    private static final String TAG = ActividadPrincipal.class.getSimpleName();
     public static final String SAMPLE_FILE = "tutorial1.pdf";
     PDFView pdfView;
     Integer pageNumber = 0;
