@@ -46,7 +46,7 @@
             app:layout_constraintBottom_toTopOf="@+id/text_componentes"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_folio" />
+            app:layout_constraintTop_toBottomOf="@+id/text_sku_recycler" />
 
         <TextView
             android:id="@+id/text_fecha"
@@ -62,7 +62,7 @@
             app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
-            android:id="@+id/text_folio"
+            android:id="@+id/text_sku_recycler"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -82,7 +82,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
-            app:layout_constraintStart_toEndOf="@+id/text_folio"
+            app:layout_constraintStart_toEndOf="@+id/text_sku_recycler"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_question" />
 

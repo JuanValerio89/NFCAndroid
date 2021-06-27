@@ -8,6 +8,7 @@ import com.ventas.havr.havrventas.Modelos.BaseMasVendidos;
 import com.ventas.havr.havrventas.Modelos.BaseSKU;
 import com.ventas.havr.havrventas.Modelos.BasePedidos;
 import com.ventas.havr.havrventas.Modelos.BaseUsuarios;
+import com.ventas.havr.havrventas.Modelos.BaseActualizar;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -24,6 +25,8 @@ public class MyAplication extends Application {
     public static AtomicInteger BasePedidos = new AtomicInteger();
     public static AtomicInteger BasemasVendidos = new AtomicInteger();
     public static AtomicInteger Baseusuarios = new AtomicInteger();
+    public static AtomicInteger BaseActualizar = new AtomicInteger();
+
     @Override
     public void onCreate() {
         setUpRealmConfig();
@@ -34,6 +37,8 @@ public class MyAplication extends Application {
         BasePedidos = getIdByTable(realm, BasePedidos.class);
         BasemasVendidos = getIdByTable(realm, BaseMasVendidos.class);
         Baseusuarios = getIdByTable(realm, BaseUsuarios.class);
+        BaseActualizar = getIdByTable(realm, BaseActualizar.class);
+
         realm.close();
         super.onCreate();
     }

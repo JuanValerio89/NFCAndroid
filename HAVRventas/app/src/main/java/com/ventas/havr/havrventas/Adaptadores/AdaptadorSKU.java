@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -68,7 +67,7 @@ public class AdaptadorSKU extends BaseAdapter {
             vh.Titulo = (TextView) convertView.findViewById(R.id.text_cot);
             vh.Cantidad = (TextView) convertView.findViewById(R.id.text_fecha);
             vh.Precio = (TextView) convertView.findViewById(R.id.text_componentes);
-            vh.Descripcion = (TextView) convertView.findViewById(R.id.text_folio);
+            vh.SKU = (TextView) convertView.findViewById(R.id.text_sku_recycler);
             vh.ImagenProducto = (ImageView) convertView.findViewById(R.id.imagen_producto);
 
 
@@ -102,19 +101,30 @@ public class AdaptadorSKU extends BaseAdapter {
         String Cantidad = baseListaSKU.getCantidad();
         String Titulo = baseListaSKU.getSKU();
         String Descripcion = baseListaSKU.getDescripcion();
-        vh.Cantidad.setText("Cantidad: " + Cantidad);
+        vh.Cantidad.setTextColor(context.getResources().getColor(R.color.negro));
+        if(Cantidad.equals("0")){
+
+            vh.SKU.setBackgroundColor(context.getResources().getColor(R.color.gris));
+            vh.Cantidad.setText("Agotado.");
+            vh.Cantidad.setTextColor(context.getResources().getColor(R.color.rojo));
+        }else{
+
+            vh.SKU.setBackgroundColor(context.getResources().getColor(R.color.colorAccent));
+            vh.Cantidad.setText("Cantidad: " + Cantidad);
+            vh.Cantidad.setTextColor(context.getResources().getColor(R.color.negro));
+        }
+        vh.SKU.setText(Titulo);
+
         vh.Precio.setText("" + Precio);
-        vh.Descripcion.setText(Titulo);
         vh.Titulo.setText(Descripcion);
 
         return convertView;
     }
     public class ViewHolder{
         TextView Titulo;
-        TextView Descripcion;
+        TextView SKU;
         TextView Precio;
         TextView Cantidad;
         ImageView ImagenProducto;
-
     }
 }

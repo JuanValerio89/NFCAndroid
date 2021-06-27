@@ -30,7 +30,7 @@
 
 
             <TextView
-                android:id="@+id/text_folio"
+                android:id="@+id/text_sku_recycler"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@color/colorPrimaryDark"
@@ -86,7 +86,7 @@
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/image_recycler"
-                app:layout_constraintTop_toBottomOf="@+id/text_folio" />
+                app:layout_constraintTop_toBottomOf="@+id/text_sku_recycler" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

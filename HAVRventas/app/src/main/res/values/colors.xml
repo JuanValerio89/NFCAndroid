@@ -4,18 +4,23 @@
     <color name="colorPrimary">#2196F3</color>
     <color name="colorPrimaryDark">#1976D2</color>
     <color name="title_color">#ffffff</color>
-
+    <color name="negro">#000</color>
     <color name="colorAccent">#018786</color>
     <color name="colorAccentA">#35018786</color>
     <color name="colorText">#1A25FD</color>
     <color name="icons">#ffffff</color>
     <color name="divider">#BDBDBD</color>
+    <color name="gris">#737373</color>
 
     <color name="fondo_card">#e8e8e8</color>
     <color name="verde">#43A047</color>
     <color name="verde_claro">#9943A047</color>
     <color name="rojo">#E53935</color>
     <color name="rojo_claro">#99E53935</color>
+    <color name="amarillo">#FF9800</color>
     <color name="verde_resultado">#018786</color>
     <color name="negroAzul">#0091EA</color>
+
+    <color name="colorVerde">#1C9F18</color>
+    <color name="colorRojo">#c00015</color>
 </resources>

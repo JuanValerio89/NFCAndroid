@@ -61,6 +61,7 @@ public class DialogImage extends AppCompatActivity {
     private String SkuBuscar;
     private String TipoUsuario = "";
     private String Precio = "";
+    private String Cantidad = "";
 
     private int Posicion;
     private int NumCotizacion;
@@ -126,7 +127,11 @@ public class DialogImage extends AppCompatActivity {
         SkuBuscar = intent.getStringExtra("SKU");
         Buscar = intent.getIntExtra("BUSCAR", 0);
         Precio = intent.getStringExtra("PRECIO");
+        Cantidad = intent.getStringExtra("CANTIDAD");
 
+        if(Cantidad.equals("0")){
+            BtAgregar.setVisibility(View.INVISIBLE);
+        }
         try{
             Log.d("Dialog Fragment", "Colocando imagen" + Link);
             Glide.with(getApplicationContext()).load(Link).into(ImagenGrande);
@@ -377,7 +382,7 @@ public class DialogImage extends AppCompatActivity {
         }catch (Exception e){
             runOnUiThread(new Runnable(){
                 public void run() {
-                    Toast.makeText(getApplicationContext(), R.string.error_base,Toast.LENGTH_LONG).show();
+
                 }
             });
         }
@@ -441,12 +446,16 @@ public class DialogImage extends AppCompatActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.pdf_boton:
-                if (baseImages.getLinkPDF().compareTo("NO") != 0) {
-                    Log.d(TAG, "LINK: " + baseImages.getLinkPDF());
-                    Intent browseb = new Intent(Intent.ACTION_VIEW, Uri.parse(baseImages.getLinkPDF()));
-                    startActivity(browseb);
-                } else {
-                    Toast.makeText(this, "El link aún no se ha dado de alta.", Toast.LENGTH_LONG).show();
+                try {
+                    if (baseImages.getLinkPDF().compareTo("NO") != 0) {
+                        Log.d(TAG, "LINK: " + baseImages.getLinkPDF());
+                        Intent browseb = new Intent(Intent.ACTION_VIEW, Uri.parse(baseImages.getLinkPDF()));
+                        startActivity(browseb);
+                    } else {
+                        Toast.makeText(this, "El link aún no se ha dado de alta.", Toast.LENGTH_LONG).show();
+                    }
+                }catch (Exception e){
+                    Toast.makeText(this,"No existe el documento",Toast.LENGTH_LONG).show();
                 }
                 break;
             case R.id.carrito:

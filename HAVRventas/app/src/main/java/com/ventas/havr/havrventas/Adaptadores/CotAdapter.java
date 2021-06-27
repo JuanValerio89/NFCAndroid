@@ -56,7 +56,7 @@ public class CotAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(layout, null);
             vh = new ViewHolder();
-            vh.folio = (TextView) convertView.findViewById(R.id.text_folio);
+            vh.folio = (TextView) convertView.findViewById(R.id.text_sku_recycler);
             vh.componentes = (TextView) convertView.findViewById(R.id.text_componentes);
             vh.cotizacion = (TextView) convertView.findViewById(R.id.text_cot);
             vh.fecha = (TextView) convertView.findViewById(R.id.text_fecha);

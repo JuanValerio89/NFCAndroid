@@ -8,7 +8,6 @@
             android:id="@+id/nav_distribuidor"
             android:icon="@drawable/ic_action_distribuidor"
             android:title="Precios mayorista" />
-
     </group>
 
     <item android:title="Contactanos">
@@ -33,6 +32,7 @@
                 android:id="@+id/nav_correo"
                 android:icon="@drawable/ic_correo_enviar"
                 android:title="Correo" />
+
             <item
                 android:id="@+id/nav_salir"
                 android:icon="@drawable/ic_action_subir_bajar"

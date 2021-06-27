@@ -72,7 +72,7 @@ public class AdapterMasvendido extends BaseAdapter {
             vh.Titulo = (TextView) convertView.findViewById(R.id.text_cot);
             vh.Cantidad = (TextView) convertView.findViewById(R.id.text_fecha);
             vh.Precio = (TextView) convertView.findViewById(R.id.text_componentes);
-            vh.Descripcion = (TextView) convertView.findViewById(R.id.text_folio);
+            vh.Descripcion = (TextView) convertView.findViewById(R.id.text_sku_recycler);
             vh.ImagenProducto = (ImageView) convertView.findViewById(R.id.imagen_producto);
 
             convertView.setTag(vh);

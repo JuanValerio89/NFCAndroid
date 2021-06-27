@@ -83,7 +83,7 @@ public class ActividadCotizaciones extends AppCompatActivity implements RealmCha
             public void onClick(View v) {
                 NumProyectos = prefs.getInt("NumeroProyectos", 0);
                 Log.d(TAG,"Numero:"+NumProyectos+",Regimen:"+RegimenUsuario);
-                showAlertForCreatingCot("Nuevo proyecto.", "De vida a su nuevo proyecto.");
+                showAlertForCreatingCot("Nuevo cotización.", "Agregue una nueva cotización.");
             }
         });
 
@@ -211,13 +211,6 @@ public class ActividadCotizaciones extends AppCompatActivity implements RealmCha
                 })
                 .setNeutralButton("Agregar material", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        /*
-                        BaseCotizaciones baseCotizaciones;
-                        baseCotizaciones = realm.where(BaseCotizaciones.class).equalTo("id",basecot.get(posicion).getId()).findFirst();
-                        realm.beginTransaction();
-                        baseCotizaciones.deleteFromRealm();
-                        realm.commitTransaction();
-                        */
                         Intent intentoA = new Intent(ActividadCotizaciones.this,Manual.class);
                         intentoA.putExtra("id", basecot.get(posicion).getId());
                         editor.putInt("Cotizacion", basecot.get(posicion).getId());

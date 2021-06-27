@@ -7,7 +7,7 @@
 
 
     <TextView
-        android:id="@+id/text_folio"
+        android:id="@+id/text_sku_recycler"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="4dp"

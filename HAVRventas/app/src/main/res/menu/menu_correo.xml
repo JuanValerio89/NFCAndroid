@@ -7,9 +7,4 @@
         android:title="Compartir"
         android:orderInCategory="1"
         app:showAsAction="ifRoom" />
-    <item android:id="@+id/correo"
-        android:icon="@drawable/ic_correo_enviar"
-        android:title="Correo"
-        android:orderInCategory="1"
-        app:showAsAction="ifRoom" />
 </menu>

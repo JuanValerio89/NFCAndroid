@@ -81,10 +81,13 @@ public class AdapterCotHolder extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
+        boolean colocar = true;
         ViewHolder vh;
         realm.init(context);
         realm = Realm.getDefaultInstance();
+        BasePedidos baseListaSKU = list.get(position);
+        String SKURevisar = baseListaSKU.getSKU();
+        //colocar = RevisarExistencias(position,SKURevisar);
         if(convertView == null){
             convertView = LayoutInflater.from(context).inflate(layout,null);
             vh = new ViewHolder();
@@ -102,9 +105,6 @@ public class AdapterCotHolder extends BaseAdapter {
             vh = (ViewHolder) convertView.getTag();
         }
 
-        BasePedidos baseListaSKU = list.get(position);
-        String Precio = "$0.0";
-        String SKURevisar = baseListaSKU.getSKU();
         try {
             ResulstBaseImagenes = realm.where(BaseImagenes.class).equalTo("SKU", SKURevisar).findAll();
             BaseImagenes = realm.where(BaseImagenes.class).equalTo("SKU", SKURevisar).findFirst();
@@ -176,41 +176,60 @@ public class AdapterCotHolder extends BaseAdapter {
                         "Pedidos", position);
             }
         });
-        BasePedidos DataBase = list.get(position);
-        String SKU = DataBase.getSKU();
-        String descripcion = DataBase.getDescripcion();
-        String Price = DataBase.getPrecio();
-        String[] PrecioSt = Price.split(" ");
-        PrecioSt[1] = PrecioSt[1].replace(",","");
-        float floatPrecio = Float.parseFloat(PrecioSt[1]);
-        String cantidad = DataBase.getCantidad();
-        int Intcantidad = Integer.parseInt(cantidad);
-        vh.Sku.setText(SKU);
-        vh.Descripcion.setText(descripcion);
-        String Total = String.format("%,.2f", PonerPrecio(floatPrecio,Intcantidad));
-        vh.Precio.setText(Price + " ■ Total $ " + Total);
-        vh.Cantidad.setText("Cantidad: "+cantidad);
-        Log.e(TAG,"Información procesar:");
-        RevisarExistencias(position,SKURevisar);
+        if(colocar) {
+            BasePedidos DataBase = list.get(position);
+            String SKU = DataBase.getSKU();
+            String descripcion = DataBase.getDescripcion();
+            String Price = DataBase.getPrecio();
+            String[] PrecioSt = Price.split(" ");
+            PrecioSt[1] = PrecioSt[1].replace(",", "");
+            float floatPrecio = Float.parseFloat(PrecioSt[1]);
+            String cantidad = DataBase.getCantidad();
+            int Intcantidad = Integer.parseInt(cantidad);
+            vh.Sku.setText(SKU);
+            vh.Descripcion.setText(descripcion);
+            String Total = String.format("%,.2f", PonerPrecio(floatPrecio, Intcantidad));
+            vh.Precio.setText(Price + " ■ Total $ " + Total);
+            vh.Cantidad.setText("Cantidad: " + cantidad);
+            Log.e(TAG, "Información procesar:");
+            //RevisarExistencias(position,SKURevisar);
+        }
         return convertView;
     }
 
-    private void RevisarExistencias(int position, String sku)
+    private boolean RevisarExistencias(int position, String sku)
     {
         BaseSKU = realm.where(BaseSKU.class)
                 .contains("SKU",sku, Case.INSENSITIVE)
                 .findFirst();
         try {
             String cantidad = BaseSKU.getCantidad();
+            int Cant = Integer.parseInt(cantidad);
+            Log.d(TAG,"SKU:"+sku+",Cantidad:"+Cant);
+            if(Cant == 0){
+                BaseCotizaciones baseCotizaciones;
+                baseCotizaciones = realm.where(BaseCotizaciones.class).equalTo("id",baseCotID).findFirst();
+                realm.beginTransaction();
+                baseCotizaciones.getBasePedidos().get(position).deleteFromRealm();
+                realm.commitTransaction();
+                Log.d(TAG,"Se elimino el artículo try");
+                Toast.makeText(context, "El artículo ya no se encuentra disponible", Toast.LENGTH_LONG).show();
+                return false;
+            }else{
+                Log.d(TAG,"El articulo existe");
+                return true;
+            }
         }catch (Exception e ){
             BaseCotizaciones baseCotizaciones;
             baseCotizaciones = realm.where(BaseCotizaciones.class).equalTo("id",baseCotID).findFirst();
             realm.beginTransaction();
             baseCotizaciones.getBasePedidos().get(position).deleteFromRealm();
             realm.commitTransaction();
-            Log.d(TAG,"Se elimino el artículo");
+            Log.d(TAG,"Se elimino el artículo catch");
             Toast.makeText(context, "El artículo ya no se encuentra disponible", Toast.LENGTH_SHORT).show();
+            //return false;
         }
+        return true;
     }
     private int CantidadDisponible(int position, int intCantidad, int subir_bajar, String sku) {
         BaseSKU = realm.where(BaseSKU.class)
@@ -230,7 +249,7 @@ public class AdapterCotHolder extends BaseAdapter {
             realm.beginTransaction();
             baseCotizaciones.getBasePedidos().get(position).deleteFromRealm();
             realm.commitTransaction();
-            Log.d(TAG,"Se elimino el artículo");
+            Log.d(TAG,"Se elimino el artículo cantidad disponible");
             Toast.makeText(context, "El artículo ya no se encuentra disponible", Toast.LENGTH_SHORT).show();
             intCantidad = 0;
             return intCantidad;

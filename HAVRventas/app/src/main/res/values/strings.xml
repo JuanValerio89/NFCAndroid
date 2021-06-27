@@ -3,106 +3,12 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="error_base">Error al leer la base de datos, se recomienda actualizar.</string>
-    <string-array name="conjunto_componentes">
-        <item>Arduino</item>
-        <item>Baterías</item>
-        <item>Base para CI</item>
-        <item>Brocas</item>
-        <item>Bluetooth</item>
-        <item>Cables</item>
-        <item>Capacitores</item>
-        <item>Cautín</item>
-        <item>Circuitos integrados</item>
-        <item>Dupont</item>
-        <item>Disipadores</item>
-        <item>Dip Switch</item>
-        <item>Displays</item>
-        <item>Headers</item>
-        <item>Productos HV</item>
-        <item>Láser</item>
-        <item>Leds</item>
-        <item>Medidores</item>
-        <item>Módulos</item>
-        <item>Motores</item>
-        <item>Placas</item>
-        <item>Potenciometros</item>
-        <item>Programadores</item>
-        <item>Pinzas</item>
-        <item>Radiofrecuencia</item>
-        <item>Resistencias SMD</item>
-        <item>Resistencias</item>
-        <item>Relevadores</item>
-        <item>Router CNC</item>
-        <item>Celdas Solares</item>
-        <item>Raspberry</item>
-        <item>Sensores</item>
-        <item>Servomotores</item>
-        <item>Switch</item>
-        <item>Miscelaneo</item>
-        <item>Transformadores</item>
-        <item>Potenciometros</item>
-        <item>Trimpots</item>
-    </string-array>
-
-    <string-array name="conjunto_componentes_descripcion">
-        <item>Shield para arduinos, tarjetas arduinos, nuevos artículos!</item>
-        <item>Para el desarrollo de tus proyectos.</item>
-        <item>Bases para montar circuitos integrados.</item>
-        <item>Brocas para perforar PCB.</item>
-        <item>Modulos para conectar inalambricamente tus microcontroladores</item>
-        <item>Cables para conectar tus circuitos y hacer pruebas.</item>
-        <item>Tantalio, monoliticos, ceramicos, smd y más</item>
-        <item>Cautines de estacion, repuestos..</item>
-        <item>Compuertas logicas, TRIAC, optoacopladores, puente H, transistores, amplificadores y más.</item>
-        <item>Cables para conectar en la protoboard.</item>
-        <item>Para modelos desde TO220</item>
-        <item>Interruptores / Selectores</item>
-        <item>Display de 16x2, pantallas OLED.</item>
-        <item>Header para arduino, para PCB</item>
-        <item>Productos diseñados por nosotros, ¿tienes algo en mente?. Te podemos ayudar </item>
-        <item>Laser de 5V, modulos para arduino</item>
-        <item>De 5mm, 3mm, sombrero, piraña, smd...</item>
-        <item>Medidores de corriente y tensión</item>
-        <item>Módulos para microcontroladores</item>
-        <item>Motores de CC, motores a pasos, motorreductores</item>
-        <item>Placa de una cara, doble cara, perforadas</item>
-        <item>Potenciometros lineales de carbón</item>
-        <item>Programadores de PIC, AVR, STM</item>
-        <item>Pinzas antiestaticas</item>
-        <item>Modulos de radiofrecuencia</item>
-        <item>Resistencias 0805</item>
-        <item>Resistencias de 1/4w, 1/2w, 2W y 5W</item>
-        <item>Relevadores 24V, 12V, 6V y 5V</item>
-        <item>Router CNC y articulos para taladros</item>
-        <item>Celdas Solares</item>
-        <item>Articulos para raspberry</item>
-        <item>Humedad, temperatura, alcohol, acelerometros, distancia, peso, entre otros..</item>
-        <item>Servomotores pequeños</item>
-        <item>Switch momentaneos y con enclavamiento</item>
-        <item>Terminales, molex, bananas, puntas de osciloscopio</item>
-        <item>Transformadores</item>
-        <item>Potenciometros lineales</item>
-        <item>Trimpots diferentes modelos</item>
-        <item>Cable para conexiones</item>
-        <item>Bases Zif</item>
-    </string-array>
-
-    <string-array name="colores_resistencias">
-        <item>-----</item>
-        <item>Negro</item>
-        <item>Cafe</item>
-        <item>Rojo</item>
-        <item>Naranja</item>
-        <item>Amarillo</item>
-        <item>Azul</item>
-        <item>Violeta</item>
-        <item>Gris</item>
-        <item>Blanco</item>
-    </string-array>
-
     <string name="title_activity_actividad_pdf">ActividadPDF</string>
+
     <string name="tutorial_a">En este tutorial encontrarás los pasos a seguir para armar una caja para el arduino mega.</string>
+
     <string name="tutorial_b">Sigue los pasos de este tutorial para aprender a usar un cargador de baterias lipo.</string>
+
     <string name="tutorial_c">Una celda peltier es un dispositivo que puede generar una diferencia de temperatura entre sus caras, al ser circulados por una corriente una de sus caras se comienza a enfriar, la otra cara se calienta</string>
     <string name="tutorial_d">En este tutorial aprenderas a usar un modulo amplificador de audio PAM8403.</string>
     <string name="tutorial_e">Aprenderas a usar un termostato W1209, control de temperatura usado regularmente en incubadoras.</string>
@@ -117,17 +23,115 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="title_activity_actividad_principal">ActividadPrincipal</string>
-
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
 
+    <string name="action_settings">Settings</string>
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+
     <string name="menu_tools">Tools</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
+    <string-array name="conjunto_componentes">
+        <item>Alambre Magneto</item>
+        <item>Arduino</item>
+        <item>Baterías</item>
+        <item>Brocas</item>
+        <item>Base para CI</item>
+        <item>Bluetooth</item>
+        <item>Cables</item>
+        <item>Capacitores</item>
+        <item>Piezas para CNC</item>
+        <item>Circuitos integrados</item>
+        <item>Dupont</item>
+        <item>Cautines</item>
+        <item>Disipadores</item>
+        <item>Dip Switch</item>
+        <item>Displays</item>
+        <item>Laminación para transformador</item>
+        <item>Fuentes</item>
+        <item>Headers</item>
+        <item>Productos HV</item>
+        <item>Leds</item>
+        <item>Medidores</item>
+        <item>Módulos</item>
+        <item>Motores</item>
+        <item>Multimetro</item>
+        <item>Placas</item>
+        <item>Potenciometros</item>
+        <item>Programadores</item>
+        <item>Pinzas</item>
+        <item>Protoboard</item>
+        <item>Radiofrecuencia</item>
+        <item>Resistencias SMD</item>
+        <item>Resistencias</item>
+        <item>Relevadores</item>
+        <item>Sensores</item>
+        <item>Servomotores</item>
+        <item>Switch</item>
+        <item>Miscelaneo</item>
+        <item>Teclados</item>
+        <item>Transformadores</item>
+        <item>Potenciometros</item>
+        <item>Trimpots</item>
+    </string-array>
+    <string-array name="conjunto_componentes_descripcion">
+        <item>Alambre para embobinar transformadores.</item>
+        <item>Shield para arduinos, tarjetas arduinos, nuevos artículos!</item>
+        <item>Para el desarrollo de tus proyectos.</item>
+        <item>Brocas para perforar PCB.</item>
+        <item>Bases para montar circuitos integrados.</item>
+        <item>Modulos para conectar inalambricamente tus microcontroladores</item>
+        <item>Cables para conectar tus circuitos y hacer pruebas.</item>
+        <item>Tantalio, monoliticos, ceramicos, smd y más</item>
+        <item>Router CNC y articulos para taladros</item>
+        <item>Compuertas logicas, TRIAC, optoacopladores, puente H, transistores, amplificadores y más.</item>
+        <item>Cables para conectar en la protoboard.</item>
+        <item>Cautines de estacion, repuestos..</item>
+        <item>Para modelos desde TO220</item>
+        <item>Interruptores / Selectores</item>
+        <item>Display de 16x2, pantallas OLED.</item>
+        <item>Diferentes tipos de laminación para transformador</item>
+        <item>Fuentes comuntadas</item>
+        <item>Header para arduino, para PCB</item>
+        <item>Productos diseñados por nosotros, ¿tienes algo en mente?. Te podemos ayudar </item>
+        <item>De 5mm, 3mm, sombrero, piraña, smd...</item>
+        <item>Medidores de corriente y tensión</item>
+        <item>Módulos para microcontroladores</item>
+        <item>Motores de CC, motores a pasos, motorreductores</item>
+        <item>Listos para medir en directa, alterna, resistencias, frecuencia</item>
+        <item>Placa de una cara, doble cara, perforadas</item>
+        <item>Potenciometros lineales de carbón</item>
+        <item>Programadores de PIC, AVR, STM</item>
+        <item>Pinzas antiestaticas</item>
+        <item>Dispositivos diseñados para prototipado</item>
+        <item>Modulos de radiofrecuencia</item>
+        <item>Resistencias 0805</item>
+        <item>Resistencias de 1/4w, 1/2w, 2W y 5W</item>
+        <item>Relevadores 24V, 12V, 6V y 5V</item>
+        <item>Humedad, temperatura, alcohol, acelerometros, distancia, peso, entre otros..</item>
+        <item>Servomotores pequeños</item>
+        <item>Switch momentaneos y con enclavamiento</item>
+        <item>Terminales, molex, bananas, puntas de osciloscopio</item>
+        <item>Teclados</item>
+        <item>Transformadores</item>
+        <item>Potenciometros lineales</item>
+        <item>Trimpots diferentes modelos</item>
+    </string-array>
+    <string-array name="colores_resistencias">
+        <item>-----</item>
+        <item>Negro</item>
+        <item>Cafe</item>
+        <item>Rojo</item>
+        <item>Naranja</item>
+        <item>Amarillo</item>
+        <item>Azul</item>
+        <item>Violeta</item>
+        <item>Gris</item>
+        <item>Blanco</item>
+    </string-array>
 
 </resources>

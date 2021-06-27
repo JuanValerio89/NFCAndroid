@@ -2,12 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ventas.havr.havrventas">
 
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="com.android.vending.BILLING" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".app.MyAplication"
@@ -15,28 +17,32 @@
         android:icon="@mipmap/ic_logo_havr"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:requestLegacyExternalStorage="true"
         android:supportsRtl="true">
         <activity
-            android:name=".Herramientas.DivisorTension"
+            android:name=".Adaptadores.ActividadAdministracion"
+            android:parentActivityName=".ActividadPrincipal"
             android:theme="@style/AppThemeLight"
-            android:parentActivityName=".Herramientas.HerramientasActivity" />
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".Herramientas.DivisorTension"
+            android:parentActivityName=".Herramientas.HerramientasActivity"
+            android:theme="@style/AppThemeLight" />
         <activity
             android:name=".Herramientas.ResistenciaSerie"
-            android:theme="@style/AppThemeLight"
-            android:parentActivityName=".Herramientas.HerramientasActivity" />
+            android:parentActivityName=".Herramientas.HerramientasActivity"
+            android:theme="@style/AppThemeLight" />
         <activity
             android:name=".Herramientas.ResistenciaParalelo"
-            android:theme="@style/AppThemeLight"
-            android:parentActivityName=".Herramientas.HerramientasActivity" />
+            android:parentActivityName=".Herramientas.HerramientasActivity"
+            android:theme="@style/AppThemeLight" />
         <activity
             android:name=".Formulario"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.Dialog.Alert" />
         <activity
             android:name=".DialogImage"
-
-
-
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeLight" />
         <activity
@@ -49,8 +55,8 @@
         <activity
             android:name=".Herramientas.CodigoDeColores"
             android:parentActivityName=".Herramientas.HerramientasActivity"
-            android:theme="@style/AppThemeLight"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeLight" />
         <activity
             android:name=".Herramientas.LeyDeOhmAC"
             android:screenOrientation="portrait"
@@ -63,28 +69,28 @@
         <activity
             android:name=".Herramientas.HerramientasActivity"
             android:parentActivityName=".ActividadPrincipal"
-            android:theme="@style/AppThemeLight"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeLight" />
         <activity
             android:name=".ActividadMasVendido"
             android:parentActivityName=".ActividadPrincipal"
-            android:theme="@style/AppThemeLight"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeLight" />
         <activity
             android:name=".ActividadPedidos"
             android:parentActivityName=".ActividadCotizaciones"
-            android:theme="@style/AppThemeLight"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeLight" />
         <activity
             android:name=".ActividadCotizaciones"
             android:parentActivityName=".Manual"
-            android:theme="@style/AppThemeLight"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeLight" />
         <activity
             android:name=".ActividadBusqueda"
             android:parentActivityName=".Manual"
-            android:theme="@style/AppThemeLight"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeLight" />
         <activity
             android:name=".ActividadPrincipal"
             android:screenOrientation="portrait"
@@ -119,11 +125,15 @@
             android:parentActivityName=".Manual"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeLight" />
-        <activity android:name=".ActividadHerramientas" />
+        <activity
+            android:name=".ActividadHerramientas"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeLight"/>
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
+
 
 </manifest>

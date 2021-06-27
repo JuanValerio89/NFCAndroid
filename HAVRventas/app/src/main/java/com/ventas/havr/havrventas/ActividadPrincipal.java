@@ -1,5 +1,5 @@
-package com.ventas.havr.havrventas;
 
+package com.ventas.havr.havrventas;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -43,6 +43,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.ventas.havr.havrventas.Adaptadores.ActividadAdministracion;
 import com.ventas.havr.havrventas.Herramientas.HerramientasActivity;
 import com.ventas.havr.havrventas.Modelos.BaseCotizaciones;
 import com.ventas.havr.havrventas.Modelos.BaseUsuarios;
@@ -68,7 +69,7 @@ public class ActividadPrincipal extends AppCompatActivity
 
 
     private CardView BtComponentes;
-    private Button BtTutoriales;
+    private Button BtPDFTienda;
     private CardView BtMasVendidos;
     private CardView BtHerramientas;
     private CardView BtCotizaciones;
@@ -193,7 +194,7 @@ public class ActividadPrincipal extends AppCompatActivity
         ResulstBaseUsuarios = realm.where(BaseUsuarios.class).findAll();
 
         BtComponentes = findViewById(R.id.bt_componentes);
-        BtTutoriales = (Button) findViewById(R.id.bt_tutoriales);
+        BtPDFTienda = (Button) findViewById(R.id.bt_pdf_tienda);
         BtMasVendidos = findViewById(R.id.bt_ofertas);
         BtHerramientas = findViewById(R.id.bt_herramientas);
         BtCotizaciones = findViewById(R.id.bt_cotizaciones);
@@ -229,14 +230,15 @@ public class ActividadPrincipal extends AppCompatActivity
             }
         });
 
-        BtTutoriales.setOnClickListener(new View.OnClickListener() {
+        BtPDFTienda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentob = new Intent(ActividadPrincipal.this, ActividadEscogerPDF.class);
-                startActivity(intentob);
+                Uri uri = Uri.parse("https://drive.google.com/file/d/1diTdQOk1REgY2f_4M3nLXD92IfRrmK_e/view?usp=sharing");
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
             }
         });
-
+        BtPDFTienda.setVisibility(View.INVISIBLE);
         BtCotizaciones.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -247,8 +249,8 @@ public class ActividadPrincipal extends AppCompatActivity
         BtHerramientas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentoc = new Intent(ActividadPrincipal.this, HerramientasActivity.class);
-                startActivity(intentoc);
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.h-avr.com/facturacion.html"));
+                startActivity(browserIntent);
             }
         });
 
@@ -316,7 +318,7 @@ public class ActividadPrincipal extends AppCompatActivity
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(intent);
         } else if (id == R.id.nav_correo) {
-            String[] TO = {"karen.meza@h-avr.com"}; //aquí pon tu correo
+            String[] TO = {"juan.valerio@h-avr.com"}; //aquí pon tu correo
             String[] CC = {"Contacto HAVR."};
             Intent emailIntent = new Intent(Intent.ACTION_SEND);
             emailIntent.setData(Uri.parse("mailto:"));
@@ -414,6 +416,7 @@ public class ActividadPrincipal extends AppCompatActivity
         this.setTitle("H-AVR Distribuidor");
         BtTipoCliente.setVisibility(View.INVISIBLE);
         BtTipoCliente.setText(("Distribuidor"));
+        BtPDFTienda.setVisibility(View.VISIBLE);
         editor = prefs.edit();
         editor.putString(ActividadPrincipal.USUARIO, ActividadPrincipal.DISTRIBUIDOR);
         editor.commit();
@@ -422,6 +425,7 @@ public class ActividadPrincipal extends AppCompatActivity
     private void CambioPublico() {
 
         this.setTitle("H-AVR Eletrónica");
+        BtPDFTienda.setVisibility(View.INVISIBLE);
         BtTipoCliente.setVisibility(View.VISIBLE);
         BtTipoCliente.setText(("¡ Precios distribuidor !"));
         editor = prefs.edit();

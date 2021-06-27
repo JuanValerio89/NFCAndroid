@@ -42,11 +42,13 @@ import com.itextpdf.text.Element;
 import com.ventas.havr.havrventas.Adaptadores.AdapterCotHolder;
 import com.ventas.havr.havrventas.Modelos.BaseCotizaciones;
 import com.ventas.havr.havrventas.Modelos.BasePedidos;
+import com.ventas.havr.havrventas.Modelos.BaseSKU;
 import com.ventas.havr.havrventas.Modelos.BaseUsuarios;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
+import io.realm.Case;
 import io.realm.Realm;
 import io.realm.RealmChangeListener;
 import io.realm.RealmList;
@@ -111,8 +113,10 @@ public class ActividadPedidos extends AppCompatActivity implements RealmChangeLi
     private String nombreProyecto = "";
     private int tamañoDb;
     private boolean consultaUsuario = false;
+    private boolean terminarRev = false;
     private FirebaseAuth mAuth;// ...
-
+    private int borrado = 0;
+    private int y = 0;
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -156,9 +160,19 @@ public class ActividadPedidos extends AppCompatActivity implements RealmChangeLi
         };
 
         baseCotizaciones = realm.where(BaseCotizaciones.class).equalTo("id", baseCotID).findFirst();
-        baseCotizaciones.addChangeListener(this);
+
         basePedidos = baseCotizaciones.getBasePedidos();
+        int Articulos = basePedidos.size();
+        Log.d(TAG,"Numero de articulos a revisar:"+Articulos);
+        for(y = 0; y < (Articulos - borrado); y++) {
+            Log.d(TAG,"Revisar existencias actividad pedidos:"+basePedidos.get(y).getSKU()+",y:"+y);
+            RevisarExistencias(y,basePedidos.get(y).getSKU());
+            terminarRev = false;
+        }
+        terminarRev = true;
+        baseCotizaciones.addChangeListener(this);
         this.setTitle("Pedidos");
+        this.setTitleColor(getResources().getColor(R.color.amarillo));
         final Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);
@@ -181,9 +195,43 @@ public class ActividadPedidos extends AppCompatActivity implements RealmChangeLi
         listView.setOnTouchListener(this);
 
         clientes = getClients();
-        getTotal();
+
         PrecioFinal = baseCotizaciones.getTotalPrecio();
         nombreProyecto = baseCotizaciones.getCotizacion();
+    }
+
+    private boolean RevisarExistencias(int position, String sku)
+    {
+        BaseSKU BaseSKU;
+        BaseSKU = realm.where(BaseSKU.class)
+                .contains("SKU",sku, Case.INSENSITIVE)
+                .findFirst();
+        try {
+            String cantidad = BaseSKU.getCantidad();
+            int Cant = Integer.parseInt(cantidad);
+            Log.d(TAG,"SKU:"+sku+",Cantidad:"+Cant);
+            if(Cant == 0){
+                BaseCotizaciones baseCotizaciones;
+                baseCotizaciones = realm.where(BaseCotizaciones.class).equalTo("id",baseCotID).findFirst();
+                realm.beginTransaction();
+                baseCotizaciones.getBasePedidos().get(position).deleteFromRealm();
+                realm.commitTransaction();
+                Log.d(TAG,"Se elimino el artículo try");
+                Toast.makeText(this, "El artículo ya no se encuentra disponible", Toast.LENGTH_SHORT).show();
+                borrado = borrado + 1;
+                y = y - 1;
+                return false;
+            }else{
+                Log.d(TAG,"El articulo existe");
+                return true;
+            }
+        }catch (Exception e ){
+
+            Log.d(TAG,"Error en la base datos, catch");
+            //Toast.makeText(this, "El artículo ya no se encuentra disponible", Toast.LENGTH_SHORT).show();
+            //return false;
+        }
+        return true;
     }
 
     @Override
@@ -269,8 +317,7 @@ public class ActividadPedidos extends AppCompatActivity implements RealmChangeLi
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    private void CrearPDF(String Direccion, int tipoUser) {
-
+    private void CrearPDF(String Direccion, int tipoUser, String nombreProyecto) {
         if (!clientes.isEmpty()) {
             String NombreTienda = "0";
             String Telefono = "1";
@@ -287,8 +334,10 @@ public class ActividadPedidos extends AppCompatActivity implements RealmChangeLi
             Log.d("PDF direccion", "Crear PDF, con direccion:" + Direccion);
             templatePDF = new TemplatePDF(getApplicationContext());
             templatePDF.openDocument();
+            int mesA = MonthS + 1;
+            Fecha = DayS + "/" + mesA + "/" + YearS;
             try {
-                templatePDF.colocarHAVR();
+                templatePDF.colocarHAVR(Fecha,nombreProyecto);
             } catch (DocumentException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -304,29 +353,15 @@ public class ActividadPedidos extends AppCompatActivity implements RealmChangeLi
             Log.e(TAG, "Precios:" + TotalCotizacion + ",IVA:" + TotalConIVA);
             templatePDF.addMetaData("H-AVR S.A. de C.V.", "Ventas", "HAVR SA de CV");
             Log.e(TAG, "Test: A");
-            String[] dirA = Direccion.split("@");
             Log.e(TAG, "Test: B");
             String Cotizacion = "COT:" + nombreProyecto;
             try {
-                templatePDF.colocarHAVRInformacion("CDMX, " +
-                                DayS + " de " +
-                                monthName[MonthS] + " de " +
-                                YearS,
-                        "HAV150422Q19\nXocotitlán 6227 Col.Aragón\n Inguarán. C.P.07820\n" +
-                                "Gustavo A. Madero, CDMX,\n Tel. 5567968483, ventas@h-avr.com\n ",
-                        Cotizacion,
-                        NombreTienda,
-                        Telefono,
-                        correo,
-                        "HAVR");
+                templatePDF.colocarHAVRInformacion(NombreTienda, Telefono, correo);
             } catch (DocumentException e) {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-            //templatePDF.addEmpresaB();
-            templatePDF.DrawLine();
             //templatePDF.addParagraph("¡Muchas gracias por su preferencia!");
             // Crea la tabla con todos los perfiles, precios y unidades.
             templatePDF.createTable(header, clientes);
@@ -335,9 +370,10 @@ public class ActividadPedidos extends AppCompatActivity implements RealmChangeLi
                     "\n\n¡Gracias por su preferencia!" + "\n\n*Precios sujetos a cambios sin previo aviso." +
                     "\n*Algunas imágenes son ilustrativas al producto." +
                     "\n*El costo de envío no esta incluido.");
-            templatePDF.addSpace(70);
+            templatePDF.addSpace(50);
             templatePDF.createTableContacto();
             //templatePDF.createTableCuadroInferior();
+            
             templatePDF.closeDocument();
             Log.d(TAG, "Finalizo PDF");
 
@@ -400,26 +436,17 @@ public class ActividadPedidos extends AppCompatActivity implements RealmChangeLi
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        getTotal();
+
         Log.d(TAG,"inItemClick");
     }
 
     @Override
     public void onChange(BaseCotizaciones baseCotizaciones) {
-        adapter.notifyDataSetChanged();
-        getTotal();
+        if(terminarRev)
+            adapter.notifyDataSetChanged();
+        //getTotal();
         Log.d(TAG,"onChange Base");
 
-    }
-
-    private void getTotal() {
-        clientes = getClients();
-        String PesosFormatoTotal = String.format("$ %,.2f", TotalCotizacion);
-        float IVA = (float) (TotalCotizacion * 0.16);
-        String TotalIVA = String.format("$ %,.2f", IVA);
-        float TotalConIVA = IVA + TotalCotizacion;
-        String TotalconIVA = String.format("$ %,.2f", TotalConIVA);
-        TxTotal.setText("Precio total: "+TotalconIVA);
     }
 
     @Override
@@ -468,20 +495,16 @@ public class ActividadPedidos extends AppCompatActivity implements RealmChangeLi
         protected Boolean doInBackground(Void... params) {
             if (TipoDialog == 1) {
                 Log.e(TAG, "Generando archivo. Puede demorar un poco..");
-                CrearPDF("HAVR", LogCompleto);
+                CrearPDF("HAVR", LogCompleto, nombreProyecto);
                 try {
                     Thread.sleep(3500);
-
                 } catch (InterruptedException e) {
                 }
             }
-
             if (TipoDialog == 2) {
                 Log.e(TAG, "Borrando base de datos");
-
                 try {
                     Thread.sleep(350);
-
                 } catch (InterruptedException e) {
                 }
             }
@@ -510,7 +533,7 @@ public class ActividadPedidos extends AppCompatActivity implements RealmChangeLi
             vDialog.dismiss();
             if (TipoDialog == 1) {
                 if (CreacionTablaCompleta)
-                    templatePDF.viewPDF();
+                    templatePDF.viewPDF("CotizacionHAVR", nombreProyecto,0);
                 Log.d(TAG, "Proceso AsyncTask concluido");
                 if (result) {
                     Log.d(TAG, "Proceso terminado:" + TipoDialog);

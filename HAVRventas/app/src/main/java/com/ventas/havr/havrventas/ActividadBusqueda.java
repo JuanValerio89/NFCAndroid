@@ -185,6 +185,7 @@ public class ActividadBusqueda extends AppCompatActivity implements RealmChangeL
             intento.putExtra("POSICION", position);
             intento.putExtra("SKU", SKUEnviar);
             intento.putExtra("BUSCAR", QueBuscar);
+            intento.putExtra("CANTIDAD",ResulstBaseSKU.get(position).getCantidad());
         startActivity(intento);
     }
 

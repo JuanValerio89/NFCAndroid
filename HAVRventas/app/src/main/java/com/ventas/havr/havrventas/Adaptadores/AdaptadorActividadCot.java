@@ -1,8 +1,6 @@
 package com.ventas.havr.havrventas.Adaptadores;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -14,16 +12,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.google.firebase.database.DataSnapshot;
 import com.ventas.havr.havrventas.Modelos.BaseCotizaciones;
 import com.ventas.havr.havrventas.R;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
-
-import io.realm.Realm;
-import io.realm.RealmResults;
 
 public class AdaptadorActividadCot extends BaseAdapter {
 
@@ -64,7 +58,7 @@ public class AdaptadorActividadCot extends BaseAdapter {
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(layout, null);
             vh = new AdaptadorActividadCot.ViewHolder();
-            vh.folio = (TextView) convertView.findViewById(R.id.text_folio);
+            vh.folio = (TextView) convertView.findViewById(R.id.text_sku_recycler);
             vh.componentes = (TextView) convertView.findViewById(R.id.text_componentes);
             vh.cotizacion = (TextView) convertView.findViewById(R.id.text_cot);
             vh.fecha = (TextView) convertView.findViewById(R.id.text_fecha);
